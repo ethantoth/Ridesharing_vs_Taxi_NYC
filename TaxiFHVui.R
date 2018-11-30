@@ -18,6 +18,7 @@ ui <- fluidPage(
                    choices = list("Taxi Trends" = "Taxi", "For Hire Vehicle Trends" = "FHV", 
                                   "Both" = "TaxiFHV"), selected = "TaxiFHV")
       ),
+    
     #This is for the user to be able to pick a range of dates. I have the code for how to do this
     #in my assignment 8 that I can send
     column(4, offset = 1,
