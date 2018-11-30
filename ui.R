@@ -27,9 +27,34 @@ shinyUI(fluidPage(
     color: #000000;")
   ),
   
-  # Sidebar with a slider input for number of bins 
+  plotOutput(""),
+  
   fluidRow(
+    #This will be to pick
+     column(3, offset = 0, 
+        div(style = "font-size: 10px; padding: 14px 0px; margin:0%",
+            radioButtons("radio", label = h3("Select Taxi or For-Hire Vehicle"),
+             choices = list("Taxi Trends" = "", "For Hire Vehicle Trends" = "", 
+                   "Both" = ""), selected = "")
+        )
+      ),
     
+    #This will be for average line
+    column(4, offset = 1, 
+           div(style = "font-size: 10px; padding: 0px 0px; margin:15%", 
+           selectInput("","Show vertical line in month:", 
+                       choices = unique(""), multiple=TRUE)
+           )
+    ),
+    
+    #This will be for date range
+    column(5, offset = 2, 
+           div(style = "font-size: 10px; padding: 0px 0px; margin:15%",
+               uiOutput("")
+           )
+    ),
+    
+        
     # Show a plot of the generated distribution
     mainPanel(
        tabsetPanel(
