@@ -11,16 +11,11 @@ library(shiny)
 
 # Define server logic required to draw a histogram
 shinyServer(function(input, output) {
-   
-  output$distPlot <- renderPlot({
-    
-    # generate bins based on input$bins from ui.R
-    x    <- faithful[, 2] 
-    bins <- seq(min(x), max(x), length.out = input$bins + 1)
-    
-    # draw the histogram with the specified number of bins
-    hist(x, breaks = bins, col = 'darkgray', border = 'white')
-    
+  
+  ## Manipulatable summary text that changes with user input as the widgets of the main and side plots are altered. 
+  output$summary <- renderText({
+    paste("Using the provided UFO data, this map of the United States displays all UFO's that were shaped as a", input$select,
+          "on the date of", input$dates1, "that were observed flying in the sky at the position on the map.")
   })
   
 })

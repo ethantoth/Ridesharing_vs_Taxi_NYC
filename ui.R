@@ -12,8 +12,20 @@ library(shiny)
 # Define UI for application that draws a histogram
 shinyUI(fluidPage(
   
-  # Application title
-  titlePanel("Old Faithful Geyser Data"),
+  ## Function that imports a CSS font to use in the header of the main page
+  tags$head(
+    tags$style(HTML("
+       @import url('//fonts.googleapis.com/css?family=Lobster|Cabin:400,700');
+    "))
+    ),
+  
+  # Header Panel that displays the CSS header with new font
+  headerPanel(
+    h1("NYC Taxi vs. Ridesharing", 
+       style = "font-family: 'Lobster', cursive;
+       font-weight: 500; line-height: 1.1; 
+    color: #000000;")
+  ),
   
   # Sidebar with a slider input for number of bins 
   fluidRow(
@@ -21,19 +33,26 @@ shinyUI(fluidPage(
     # Show a plot of the generated distribution
     mainPanel(
        tabsetPanel(
-         tabPanel("Plot", 
+         tabPanel("Plot", plotOutput("dateMap")),
+         tabPanel("Visualization 1",
                   sidebarLayout(
                     sidebarPanel(
                       h3("Manipulate the Data")
                     ),
                     mainPanel(
-                      plotOutput("dateMap"))
-                    )
-                  ),
-         tabPanel("Visualization 1", plotOutput("")),
-         tabPanel("Visualization 2", plotOutput("")),
-         tabPanel("Summary", verbatimTextOutput("summary")),
-         plotOutput("distPlot")
+                      plotOutput(""))
+                  )
+         ),
+         tabPanel("Visualization 2", 
+                  sidebarLayout(
+                    sidebarPanel(
+                      h3("Manipulate the Data")
+                    ),
+                    mainPanel(
+                      plotOutput(""))
+                  )
+         ),
+         tabPanel("Summary", verbatimTextOutput("summary"))
        )
     )
   )
