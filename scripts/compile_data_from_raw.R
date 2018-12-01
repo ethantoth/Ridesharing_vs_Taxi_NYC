@@ -191,8 +191,10 @@ sum <- bind_rows(sum, sum3)
 sum <- bind_rows(sum, sum4)
 sum <- bind_rows(sum, sum5)
 sum <- bind_rows(sum, sum6)
+
 rm(sum6)
 View(sum)
+
 for(index in 1:nrow(sum)) {
   
   transportData[2, index + 1] <- as.numeric(transportData[2, index + 1]) +
@@ -206,6 +208,9 @@ write.csv(transportData, file = "data/tripData.csv", row.names = FALSE)
 View(read.csv("data/tripData.csv", stringsAsFactors = FALSE))
 
 View(transportData)
+
+
+
 
 
 

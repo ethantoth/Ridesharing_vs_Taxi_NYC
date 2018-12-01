@@ -5,7 +5,7 @@ library(dplyr)
 transport_data <- read.csv("data/final_reformat.csv", stringsAsFactors = FALSE, header = TRUE)
 correct_class <-  transport_data %>% mutate(Date = as.Date(Date)) %>%
   mutate(FHV = as.numeric(FHV)) %>% mutate(Yellow = as.numeric(Yellow))
-
+View(correct_class)
 ## Plots the data as lines on a single plot, with For Hire Vehicles
 ## being represented by the purple line, and Yellow Taxis being represented
 ## by the yellow line
@@ -20,4 +20,5 @@ basic_plot <- ggplot(correct_class, aes(x = Date)) +
   scale_y_continuous(limits = c(100000, 900000),
        breaks = seq(from = 100000, to = 900000, by = 100000),
        labels = scales::comma)
-print(basic_plot)
+
+basic_plot
