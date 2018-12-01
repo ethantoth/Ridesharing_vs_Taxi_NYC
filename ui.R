@@ -31,7 +31,7 @@ shinyUI(fluidPage(
   # Show a plot of the generated distribution
   mainPanel(
      tabsetPanel(
-        tabPanel("Plot", 
+        tabPanel("Home", 
            fluidRow(
               #This will be to pick
                  column(3, offset = 0, 
@@ -44,9 +44,8 @@ shinyUI(fluidPage(
                     
                     #This will be for average line
                     column(4, offset = 1, 
-                           div(style = "font-size: 10px; padding: 0px 0px; margin:15%", 
-                               selectInput("","Show vertical line in month:", 
-                                           choices = unique(""), multiple=TRUE)
+                           div(style = "font-size: 10px; padding: 0px 0px; margin:0%", 
+                               dateRangeInput("dates", label= h3("Date Range"))
                            )
                     ),
                     
