@@ -30,7 +30,7 @@ shinyUI(fluidPage(
   plotOutput(""),
   
   fluidRow(
-    #This will be to pick
+    #This will be to pick 
      column(3, offset = 0, 
         div(style = "font-size: 10px; padding: 14px 0px; margin:0%",
             radioButtons("radio", label = h3("Select Taxi or For-Hire Vehicle"),
