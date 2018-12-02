@@ -36,7 +36,7 @@ shinyUI(fluidPage(
                ),
              
               #This will be to pick
-             plotOutput(""),
+             plotOutput("day_line_graph"),
                  column(3, offset = 0, 
                     div(style = "font-size: 10px; padding: 14px 0px; margin:0%",
                        radioButtons("radio", label = h3("Select Taxi or For-Hire Vehicle"),
@@ -48,8 +48,7 @@ shinyUI(fluidPage(
                     #This will be for average line
                     column(4, offset = 1, 
                            div(style = "font-size: 10px; padding: 0px 0px; margin:15%", 
-                               selectInput("","Show vertical line in month:", 
-                                           choices = unique(""), multiple=TRUE)
+                               dateRangeInput("dates", label = h3("Date range"))
                            )
                     ),
                     
