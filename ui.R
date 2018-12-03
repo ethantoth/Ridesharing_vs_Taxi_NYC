@@ -57,11 +57,11 @@ navbarPage("NYC Taxi and RideSharing",
                              div(style = "font-size: 10px; padding: 0px 0px; margin:15%",
                                  uiOutput("")
                              ))),
-                      p("The visualizations will show how different types of paid transport have 
-                      increased or decreased in popularity  over 2018 from the months of January to June.
-                      In addition, they are intended to speak to the current debate surrounding 
-                      lose of business for taxi drivers in urban areas, such as New York. The lines within the graph 
-                      display the direction the amount of business for these types of paid vehicles is moving in. 
+                      p("The visualizations on this application meant to show how different types of paid transport have 
+                      increased or decreased in popularity. Our data is filtered down to 2018 (the months of January to June) 
+                      and the first month of every year from 2015. The intent of these visualizations to speak to the current 
+                      debate surrounding lose of business for taxi drivers in urban areas, such as New York. The lines across the graph 
+                      display the linear relationship of the amount of consumers over time for these types of paid vehicles. 
                       The trends indicate that taxi use is slowly on the decline, while in contrast, for-hire
                       vehicle use is sturdily inclining. From this data it can be inferred that for-hire vehicles (such as Uber or Lyft) 
                       are becoming more popualr among consumers and with consequence taking away yellow taxi's business.")
