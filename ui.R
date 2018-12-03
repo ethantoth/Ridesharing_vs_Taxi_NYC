@@ -83,8 +83,12 @@ navbarPage("NYC Taxi and RideSharing",
                       ),
                       mainPanel(
                         DT::dataTableOutput("monthlyTable"))
-                    )
+                    ),
+                    p("This table gives a summary of the total amount of for-hire vehicles and yellow taxis used by riders within
+                      2018 from the months of January to June.")
            ),
+          # In our summary we need to make sure to address why we picked only several months in 2018(we can just say how the data
+          # only displays those months currently).
            tabPanel("Summary", verbatimTextOutput("summary"))
         )
     )
