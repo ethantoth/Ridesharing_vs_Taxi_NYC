@@ -10,12 +10,15 @@
 library(shiny)
 library(ggplot2)
 library(dplyr)
-
+library(lubridate)
 ## Reads in the data, and allows the data to be used by ggplot
 transport_data <- read.csv("data/final_reformat.csv", stringsAsFactors = FALSE, header = TRUE)
 transport_data <-  transport_data %>% mutate(Date = as.Date(Date)) %>%
   mutate(FHV = as.numeric(FHV)) %>% mutate(Yellow = as.numeric(Yellow))
 
+monthly_data <- transport_data %>% group_by(month=floor_date(Date, "month")) %>% 
+  summarise(FHV = sum(FHV), Yellow = sum(Yellow))
+View(monthly_data)
 # Define server logic required to draw our plots
 shinyServer(function(input, output) {
   
