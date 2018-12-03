@@ -8,6 +8,7 @@
 #
 
 library(shiny)
+library(DT)
 
 # Define UI for application that draws a histogram
 shinyUI(fluidPage(
@@ -65,13 +66,13 @@ navbarPage("NYC Taxi and RideSharing",
                         plotOutput(""))
                     )
            ),
-           tabPanel("Visualization 2", 
+           tabPanel("Data", 
                     sidebarLayout(
                       sidebarPanel(
                         h3("Manipulate the Data")
                       ),
                       mainPanel(
-                        plotOutput(""))
+                        DT::dataTableOutput("monthlyTable"))
                     )
            ),
            tabPanel("Summary", verbatimTextOutput("summary"))
