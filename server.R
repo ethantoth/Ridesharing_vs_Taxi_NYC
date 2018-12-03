@@ -18,7 +18,7 @@ transport_data <-  transport_data %>% mutate(Date = as.Date(Date)) %>%
 
 monthly_data <- transport_data %>% group_by(month=floor_date(Date, "month")) %>% 
   summarise(FHV = sum(FHV), Yellow = sum(Yellow))
-View(monthly_data)
+
 # Define server logic required to draw our plots
 shinyServer(function(input, output) {
   
