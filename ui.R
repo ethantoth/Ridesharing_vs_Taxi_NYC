@@ -39,16 +39,17 @@ navbarPage("NYC Taxi and RideSharing",
                       column(3, offset = 0, 
                              div(style = "font-size: 10px; padding: 14px 0px; margin:0%",
                                  radioButtons("radio", label = h3("Select Taxi or For-Hire Vehicle"),
-                                              choices = list("Taxi Trends" = "", "For Hire Vehicle Trends" = "", 
-                                                             "Both" = ""), selected = "")
+                                              choices = list("Taxi Trends" = "taxi", "For Hire Vehicle Trends" = "FHV", 
+                                                             "Both" = "both"), selected = "both")
                              )
                       ),
                       
                       #This will be for average line
                       column(4, offset = 1, 
                              div(style = "font-size: 10px; padding: 0px 0px; margin:15%", 
-                                 dateRangeInput("dates", label = h3("Date Range"))
-                             )
+                                 dateRangeInput("dates", label = h3("Date Range"),
+                                                start = as.Date("2018-01-01"), end =as.Date("2018-07-01"))
+                                 )
                       ),
                       
                       #This will be for date range
