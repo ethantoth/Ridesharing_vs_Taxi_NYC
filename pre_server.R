@@ -9,9 +9,11 @@ View(correct_class)
 ## Plots the data as lines on a single plot, with For Hire Vehicles
 ## being represented by the purple line, and Yellow Taxis being represented
 ## by the yellow line
-basic_plot <- ggplot(correct_class, aes(x = Date)) +
+basic_plot <- ggplot(correct_class, aes(x = Date, y = FHV)) +
   geom_line(aes(y = FHV, color = "FHV")) +
+  geom_smooth(method = "lm", se = FALSE) +
   geom_line(aes(y = Yellow, color = "Yellow Taxi")) +
+  geom_smooth(aes(y = Yellow), method = "lm", se = FALSE) +
   scale_colour_manual(values=c("purple", "gold3")) +
   theme_bw() +
   labs(title = "NYC Taxis vs For Hire Vehices", y = "Number of Pickups", 
