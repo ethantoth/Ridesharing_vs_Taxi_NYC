@@ -24,3 +24,14 @@ basic_plot <- ggplot(correct_class, aes(x = Date, y = FHV)) +
        labels = scales::comma)
 
 basic_plot
+
+bar_plot <- ggplot(correct_class, aes(x = Date, y = FHV, color = "FHV")) +
+  geom_bar(stat = "identity", color = "purple", width = 0.5) +
+  geom_bar(stat = "identity", aes(y = Yellow), color = "gold3", width = 0.5) +
+  theme_bw() +
+  labs(title = "NYC Taxis vs For Hire Vehices", y = "Number of Pickups",
+       color = "Service Type") +
+  scale_x_date(date_breaks = "1 month") +
+  scale_y_continuous(breaks = seq(from = 0, to = 900000, by = 100000),
+       expand = c(0,0), labels = scales::comma)
+bar_plot
