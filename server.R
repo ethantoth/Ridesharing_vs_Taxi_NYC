@@ -11,6 +11,7 @@ library(shiny)
 library(ggplot2)
 library(dplyr)
 library(lubridate)
+library(DT)
 ## Reads in the data, and allows the data to be used by ggplot
 transport_data <- read.csv("data/final_reformat.csv", stringsAsFactors = FALSE, header = TRUE)
 transport_data <-  transport_data %>% mutate(Date = as.Date(Date)) %>%
@@ -26,6 +27,10 @@ shinyServer(function(input, output) {
   output$summary <- renderText({
     paste("Using the provided UFO data, this map of the United States displays all UFO's that were shaped as a", input$select,
           "on the date of", input$dates1, "that were observed flying in the sky at the position on the map.")
+  })
+  
+  output$monthlyTable <- DT::renderDataTable({
+    monthly_data
   })
   
   ## This graph will show how different types of paid transport change in popularity 
