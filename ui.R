@@ -37,8 +37,8 @@ navbarPage("NYC Taxi and RideSharing",
                       #This will be to pick
                       plotOutput("day_line_graph"),
                       column(3, offset = 0, 
-                             div(style = "font-size: 10px; padding: 14px 0px; margin:0%",
-                                 radioButtons("radio", label = h3("Select Taxi or For-Hire Vehicle"),
+                             div(style = "font-size: 10px; padding: 0px 0px; margin:15%",
+                                 radioButtons("radio", label = h3("Transportation Services"),
                                               choices = list("Taxi Trends" = "taxi", "For Hire Vehicle Trends" = "FHV", 
                                                              "Both" = "both"), selected = "both")
                              )
@@ -56,7 +56,16 @@ navbarPage("NYC Taxi and RideSharing",
                       column(5, offset = 2, 
                              div(style = "font-size: 10px; padding: 0px 0px; margin:15%",
                                  uiOutput("")
-                             )
+                             ),
+                      
+                      p("The visualizations will show how different types of paid transport have 
+                        increased or decreased in popularity  over 2018 from the months of January to June.
+                        In addition, they are intended to speak to the current debate surrounding 
+                        lose of business for taxi drivers in urban areas, such as New York. The lines within the graph 
+                        display the direction the amount of business for these types of paid vehicles is moving in. 
+                        The trends indicate that taxi use is slowly on the decline, while in contrast, for-hire
+                        vehicle use is sturdily inclining. From this data it can be inferred that for-hire vehicles (such as Uber or Lyft) 
+                        are becoming more popualr among consumers and with consequence taking away yellow taxi's business.")
                       ))),
            tabPanel("Visualization 1",
                     sidebarLayout(

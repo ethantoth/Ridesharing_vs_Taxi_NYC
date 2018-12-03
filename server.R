@@ -128,6 +128,7 @@ shinyServer(function(input, output) {
   #   
   #   month_plot
   # })
-  
-  
+  #Text summary of our overall project
+ 
+
 })
