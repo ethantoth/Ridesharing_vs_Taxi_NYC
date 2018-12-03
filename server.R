@@ -38,20 +38,22 @@ shinyServer(function(input, output) {
     print(first_date)
     print(class(first_date))
     print(class(transport_data[1,1]))
-    
-    day_line_graph_data <- transport_data %>% 
-      filter(Date >= first_date) %>% 
-      filter(Date <= final_date)
-    
+
+    #day_line_graph_data <- transport_data %>%
+     # filter(Date >= first_date) %>%
+      #filter(Date <= final_date)
+
     View(day_line_graph_data)
-    if(input$typeSelect != "ALL") {
-      day_line_graph_data <- day_line_graph_data %>% 
-        select(Date, FHV)
-    }
+    #if(input$typeSelect != "ALL") {
+     # day_line_graph_data <- day_line_graph_data %>%
+      #  select(Date, FHV)
+    #}
     
-    day_plot <- ggplot(day_line_graph_data, aes(x = Date)) +
+    basic_plot <- ggplot(transport_data, aes(x = Date, y = FHV)) +
       geom_line(aes(y = FHV, color = "FHV")) +
+      geom_smooth(method = "lm", se = FALSE) +
       geom_line(aes(y = Yellow, color = "Yellow Taxi")) +
+      geom_smooth(aes(y = Yellow), method = "lm", se = FALSE) +
       scale_colour_manual(values=c("purple", "gold3")) +
       theme_bw() +
       labs(title = "NYC Taxis vs For Hire Vehices", y = "Number of Pickups", 
@@ -61,7 +63,7 @@ shinyServer(function(input, output) {
                          breaks = seq(from = 100000, to = 900000, by = 100000),
                          labels = scales::comma)
     
-    day_plot
+    basic_plot
   })
   
   ## This graph will show how different types of paid transport change in popularity 
