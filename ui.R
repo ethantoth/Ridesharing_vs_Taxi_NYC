@@ -16,6 +16,13 @@ shinyUI(fluidPage(
 # Show a plot of the generated distribution
 navbarPage("NYC Taxi and RideSharing",
            tabPanel("Home",
+                    headerPanel(
+                      h2("NYC Taxi vs. Ridesharing", 
+                         style = "font-family: 'Arial Black', Gadget, sans-serif;
+                         font-weight: 400; line-height: 1.1; 
+                         color: #000000;")
+                      ),
+                    
                     p("The visualizations on this application meant to show how different types of paid transport have 
                     increased or decreased in popularity. Our data is filtered down to 2018 (the months of January to June) 
                     and the first month of every year from 2015. The intent of these visualizations to speak to the current 
