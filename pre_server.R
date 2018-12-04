@@ -21,8 +21,8 @@ basic_plot <- ggplot(correct_class, aes(x = Date, y = FHV)) +
        color = "Service Type") +
   scale_x_date(date_breaks = "1 month") +
   scale_y_continuous(limits = c(100000, 900000),
-       breaks = seq(from = 100000, to = 900000, by = 100000),
-       labels = scales::comma)
+                     breaks = seq(from = 100000, to = 900000, by = 100000),
+                     labels = scales::comma)
 basic_plot
 
 
@@ -37,7 +37,7 @@ bar_plot <- ggplot(correct_class, aes(x = Date, y = FHV, color = "FHV")) +
        color = "Service Type") +
   scale_x_date(date_breaks = "1 month") +
   scale_y_continuous(breaks = seq(from = 0, to = 900000, by = 100000),
-       expand = c(0,0), labels = scales::comma)
+                     expand = c(0,0), labels = scales::comma)
 bar_plot
 
 ## This is the bar plot for the data containing a value for a single

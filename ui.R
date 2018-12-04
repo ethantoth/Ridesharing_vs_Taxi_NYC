@@ -6,6 +6,9 @@
 # 
 #    http://shiny.rstudio.com/
 #
+#talk about the data whether its skewed// questions on what they should be concluded
+##rendering a markdown file into
+##limitations of data, correlation does notimply casuation, links, pictures of us
 
 library(shiny)
 library(DT)
@@ -67,10 +70,16 @@ navbarPage("NYC Taxi and RideSharing",
                       #This is for a widget that either displays the trend line(s) or not
                       column(5,
                              div(style = "font-size: 10px; padding: 0px 0px; margin:15%",
-                                 radioButtons("radio", label = h3("Trend Line"),
-                                              choices = list("Show Trend Line" = "", "Don't Show Line" = ""), selected = ""))
+                                 radioButtons("trend", label = h3("Trend Line"),
+                                              choices = list("Show Trend Line" = "show", 
+                                                             "Don't Show Line" = "dont_show"), selected = "show"))
                              )
-                      )
+                      ),
+                    column(6,
+                           div(style = "font-size: 10px; padding: 0px 0px; margin:15%",
+                               radioButtons("trend", label = h3("View data in:"),
+                                            choices = list("Days" = "", "Months" = "",), selected = "")
+                    
            ),
 
 

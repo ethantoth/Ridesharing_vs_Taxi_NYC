@@ -12,6 +12,7 @@ library(ggplot2)
 library(dplyr)
 library(lubridate)
 library(DT)
+library(reshape2)
 
 ## Reads in the data, and allows the data to be used by ggplot
 transport_data <- read.csv("data/final_reformat.csv", stringsAsFactors = FALSE, header = TRUE)
@@ -27,8 +28,7 @@ monthly_data <- transport_data %>% group_by(month=floor_date(Date, "month")) %>%
 
 
 yearly_data <- read.csv("data/yearlyTripData.csv", stringsAsFactors = FALSE, header = TRUE)
-##yearly_data <- melt(transport_data)
-
+melted_yearly_data <- melt(yearly_data)
 
 
 # Define server logic required to draw our plots
@@ -57,7 +57,6 @@ shinyServer(function(input, output) {
       
       basic_plot <- ggplot(day_line_graph_data, aes(x = Date, y = Yellow)) +
         geom_line(aes(y = Yellow, color = "Yellow Taxi")) +
-        geom_smooth(method = "lm", se = FALSE) +
         scale_colour_manual(values= "gold3") +
         theme_bw() +
         labs(title = "NYC Taxis Pickup Data", y = "Number of Pickups", 
@@ -71,7 +70,6 @@ shinyServer(function(input, output) {
       
       basic_plot <- ggplot(day_line_graph_data, aes(x = Date, y = FHV)) +
         geom_line(aes(y = FHV, color = "FHV")) +
-        geom_smooth(method = "lm", se = FALSE) +
         scale_colour_manual(values = "purple") +
         theme_bw() +
         labs(title = "NYC Taxis Pickup Data", y = "Number of Pickups", 
@@ -84,9 +82,7 @@ shinyServer(function(input, output) {
     } else if (input$radio == "both"){
       basic_plot <- ggplot(day_line_graph_data, aes(x = Date, y = FHV)) +
         geom_line(aes(y = FHV, color = "FHV")) +
-        geom_smooth(method = "lm", se = FALSE) +
         geom_line(aes(y = Yellow, color = "Yellow Taxi")) +
-        geom_smooth(aes(y = Yellow), method = "lm", se = FALSE) +
         scale_colour_manual(values=c("purple", "gold3")) +
         theme_bw() +
         labs(title = "NYC Taxis vs For Hire Vehices", y = "Number of Pickups", 
@@ -97,22 +93,32 @@ shinyServer(function(input, output) {
                            labels = scales::comma)
     }
     
+    if (input$trend == "show") {
+      basic_plot <- basic_plot +
+        geom_smooth(method = "lm", se = FALSE) 
+      if (input$radio != "FHV") {
+        basic_plot <- basic_plot +
+          geom_smooth(aes(y = Yellow), method = "lm", se = FALSE)
+        
+      }
+    }
+    
     basic_plot
   })
   
   ## This is the server code for the third tab of our application "2018 Monthly Trends"
   
-  # output$monthly2018Trends <- renderPlot({
-  #   ggplot(yearly_data, aes(x = Date,value,fill=variable)) +
-  #     geom_bar(stat="identity",position="dodge") +
-  #     scale_fill_manual(values = c("purple", "gold3")) +
-  #     theme_bw() +
-  #     scale_y_continuous(labels = scales::comma, expand = c(0,0),
-  #                        limits = c(0, 20500000)) +
-  #     scale_x_discrete(labels = c("2015", "2016", "2017", "2018")) +
-  #     labs(title = "NYC Taxis vs For Hire Vehices in January from 2015 to 2018", y = "Number of Pickups",
-  #          fill = "Service Type")
-  # })
+  output$monthly2018Trends <- renderPlot({
+    ggplot(melted_yearly_data, aes(x = Date,value,fill=variable)) +
+      geom_bar(stat="identity",position="dodge") +
+      scale_fill_manual(values = c("purple", "gold3")) +
+      theme_bw() +
+      scale_y_continuous(labels = scales::comma, expand = c(0,0),
+                         limits = c(0, 20500000)) +
+      scale_x_discrete(labels = c("2015", "2016", "2017", "2018")) +
+      labs(title = "NYC Taxis vs For Hire Vehices in January from 2015 to 2018", y = "Number of Pickups",
+           fill = "Service Type")
+  })
   
   
   ## For the last tab "Table", we want to render a data table displaying the 2018 transport
