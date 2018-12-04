@@ -92,6 +92,14 @@ shinyServer(function(input, output) {
         scale_y_continuous(limits = c(100000, 900000),
                            breaks = seq(from = 100000, to = 900000, by = 100000),
                            labels = scales::comma)
+      basic_plot <- ggplot(monthly_data, aes(x = month, y = FHV)) +
+        geom_line(aes(y = FHV, color = "FHV")) +
+        geom_line(aes(y = Yellow, color = "Yellow Taxi")) +
+        scale_colour_manual(values=c("purple", "gold3")) +
+        theme_bw() +
+        labs(title = "NYC Taxis vs For Hire Vehices", y = "Number of Pickups", 
+             color = "Service Type") +
+        scale_x_date(date_breaks = "1 month")
     }
     
     if (input$trend == "show") {
