@@ -82,7 +82,6 @@ shinyServer(function(input, output) {
                            labels = scales::comma)
       
     } else if (input$radio == "both"){
-      
       basic_plot <- ggplot(day_line_graph_data, aes(x = Date, y = FHV)) +
         geom_line(aes(y = FHV, color = "FHV")) +
         geom_smooth(method = "lm", se = FALSE) +
