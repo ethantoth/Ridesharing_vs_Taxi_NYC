@@ -1,5 +1,6 @@
 library(ggplot2)
 library(dplyr)
+library(reshape2)
 
 ## Reads in the data, and allows the data to be used by ggplot
 transport_data <- read.csv("data/final_reformat.csv", stringsAsFactors = FALSE, header = TRUE)
@@ -22,12 +23,15 @@ basic_plot <- ggplot(correct_class, aes(x = Date, y = FHV)) +
   scale_y_continuous(limits = c(100000, 900000),
        breaks = seq(from = 100000, to = 900000, by = 100000),
        labels = scales::comma)
-
 basic_plot
 
+
+## This is a barplot that adds a bar for every data entry input. It does not
+## appear to be helpful for daily data, but may be for monthly
+
 bar_plot <- ggplot(correct_class, aes(x = Date, y = FHV, color = "FHV")) +
-  geom_bar(stat = "identity", color = "purple", width = 0.5) +
-  geom_bar(stat = "identity", aes(y = Yellow), color = "gold3", width = 0.5) +
+  geom_bar(stat = "identity", color = "purple", fill = "purple", position = "dodge") +
+  geom_bar(stat = "identity", aes(y = Yellow), color = "gold3") +
   theme_bw() +
   labs(title = "NYC Taxis vs For Hire Vehices", y = "Number of Pickups",
        color = "Service Type") +
@@ -35,3 +39,17 @@ bar_plot <- ggplot(correct_class, aes(x = Date, y = FHV, color = "FHV")) +
   scale_y_continuous(breaks = seq(from = 0, to = 900000, by = 100000),
        expand = c(0,0), labels = scales::comma)
 bar_plot
+
+## This is the bar plot for the data containing a value for a single
+## month in each year. Note that it uses the data before reshaping
+transport_data <- read.csv("data/yearlyTripData.csv", stringsAsFactors = FALSE, header = TRUE)
+df.long <- melt(transport_data)
+ggplot(df.long,aes(x = Date,value,fill=variable)) +
+  geom_bar(stat="identity",position="dodge") +
+  scale_fill_manual(values = c("purple", "gold3")) +
+  theme_bw() +
+  scale_y_continuous(labels = scales::comma, expand = c(0,0),
+                     limits = c(0, 20500000)) +
+  scale_x_discrete(labels = c("2015", "2016", "2017", "2018")) +
+  labs(title = "NYC Taxis vs For Hire Vehices in January from 2015 to 2018", y = "Number of Pickups",
+       fill = "Service Type")
