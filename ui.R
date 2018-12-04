@@ -78,17 +78,18 @@ navbarPage("NYC Taxi and RideSharing",
                     column(6,
                            div(style = "font-size: 10px; padding: 0px 0px; margin:15%",
                                radioButtons("trend", label = h3("View data in:"),
-                                            choices = list("Days" = "", "Months" = "",), selected = "")
+                                            choices = list("Days" = "", "Months" = ""), selected = ""))
+                    )
                     
            ),
 
 
            
            #The second tab
-           tabPanel("2018 Monthly Trends",
+           tabPanel("Yearly Trends",
 
                     
-                    plotOutput("monthly2018Trends"),
+                    plotOutput("yearly_trends"),
 
                     
                     #This will be to pick in whether you want to see 
@@ -111,12 +112,12 @@ navbarPage("NYC Taxi and RideSharing",
            ),
            
            #The third tab
-           tabPanel("Yearly Trends", 
+           tabPanel("Example Week", 
                     fluidRow(
-                        h3("Data for 2015-2018")
+                        h3("A sample week, showing pickups by day.")
                       ),
                       mainPanel(
-                        plotOutput(""))
+                        plotOutput("example_week"))
                     ),    
            
            

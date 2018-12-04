@@ -108,7 +108,7 @@ shinyServer(function(input, output) {
   
   ## This is the server code for the third tab of our application "2018 Monthly Trends"
   
-  output$monthly2018Trends <- renderPlot({
+  output$yearly_trends <- renderPlot({
     ggplot(melted_yearly_data, aes(x = Date,value,fill=variable)) +
       geom_bar(stat="identity",position="dodge") +
       scale_fill_manual(values = c("purple", "gold3")) +
@@ -116,8 +116,29 @@ shinyServer(function(input, output) {
       scale_y_continuous(labels = scales::comma, expand = c(0,0),
                          limits = c(0, 20500000)) +
       scale_x_discrete(labels = c("2015", "2016", "2017", "2018")) +
-      labs(title = "NYC Taxis vs For Hire Vehices in January from 2015 to 2018", y = "Number of Pickups",
-           fill = "Service Type")
+      labs(title = "NYC Taxis vs For Hire Vehices in January from 2015 to 2018",
+           y = "Number of Pickups", x = "Year", fill = "Service Type")
+  })
+  
+  ## This creates a plot comparing a single week of FHV and Yellow Taxi pickups
+  
+  output$example_week <- renderPlot({
+    one_week <- transport_data %>%
+      filter(Date >= as.Date("2018-03-04")) %>%
+      filter(Date <= as.Date("2018-03-10"))
+    
+    single_week <- ggplot(one_week, aes(x = Date, y = FHV)) +
+      geom_line(aes(y = FHV, color = "FHV")) +
+      geom_line(aes(y = Yellow, color = "Yellow Taxi")) +
+      scale_colour_manual(values=c("purple", "gold3")) +
+      theme_bw() +
+      labs(title = "NYC Taxis vs For Hire Vehices - March 4th - 10th, 2018", 
+           y = "Number of Pickups", x = "Day", color = "Service Type") +
+      scale_x_date(date_breaks = "1 day", labels = scales::date_format("%A")) +
+      scale_y_continuous(limits = c(100000, 900000),
+                         breaks = seq(from = 100000, to = 900000, by = 100000),
+                         labels = scales::comma)
+    single_week
   })
   
   
