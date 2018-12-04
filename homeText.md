@@ -9,7 +9,7 @@ to call a cab from your phone would be the single feature that turned ridesharin
 industry. The exponential growth of this new service has gained popular media attention but has also remained somewhat
 ambiguous when focus is drawn to its economical effects. By taking several high-volume data sets from the New York Taxi
 and Limousine Commission we have derived three separate visualizations that illustrate the growth of ridesharing
-services in New York City and the decline of more traditional services present in New York before a newer service was 
+services in New York City and the decline of more traditional services present in New York before this newer service was
 introduced.
 
 ### Visualizations

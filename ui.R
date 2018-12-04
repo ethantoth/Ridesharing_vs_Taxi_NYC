@@ -34,7 +34,12 @@ navbarPage("NYC Taxi and RideSharing",
                     #'      font-weight: 400; line-height: 1.1; 
                     #'      color: #000000;")
                     #'   ),
-                    
+                    fillPage(
+                      fillRow(
+                        div(style = "background-color: red; width: 100%; height: 100%;"),
+                        div(style = "background-color: blue; width: 100%; height: 100%;")
+                      )
+                    ),
                     includeMarkdown("homeText.md")
 
                    
@@ -51,39 +56,36 @@ navbarPage("NYC Taxi and RideSharing",
                     ),
                     fluidRow(
                        column(3, 
-                             div(style = "font-size: 10px; padding: 0px 0px; margin:15%",
-                                 radioButtons("radio", label = h3("Transportation Services"),
+                             div(style = "font-size: 10px; padding: 0px 0px; margin:0%",
+                                 radioButtons("radio", label = h5("Transportation Services"),
                                               choices = list("Taxi Trends" = "taxi", "For Hire Vehicle Trends" = "FHV", 
                                                              "Both" = "both"), selected = "both")
                       )),
                       
                       #This will be for picking the daily date range 
                       column(4, 
-                             div(style = "font-size: 10px; padding: 0px 0px; margin:15%", 
-                                 dateRangeInput("dates", label = h3("Date Range"),
+                             div(style = "font-size: 10px; padding: 0px 0px; margin:0%", 
+                                 dateRangeInput("dates", label = h5("Date Range"),
                                                 start = as.Date("2018-01-01"), end = as.Date("2018-07-01"))
                       
                                  )),
                       
                       #This is for a widget that either displays the trend line(s) or not
                       column(5,
-                             div(style = "font-size: 10px; padding: 0px 0px; margin:15%",
-                                 radioButtons("trend", label = h3("Trend Line"),
+                             div(style = "font-size: 10px; padding: 0px 0px; margin:0%",
+                                 radioButtons("trend", label = h5("Trend Line"),
                                               choices = list("Show Trend Line" = "show", 
                                                              "Don't Show Line" = "dont_show"), selected = "show"))
                              )
                       ),
                     column(6,
-                           div(style = "font-size: 10px; padding: 0px 0px; margin:15%",
-                               radioButtons("trend", label = h3("View data in:"),
-<<<<<<< HEAD
+                           div(style = "font-size: 10px; padding: 0px 0px; margin:0%",
+                               radioButtons("trend", label = h5("View data in:"),
                                             choices = list("Days" = "", "Months" = ""), selected = "")
                            )
-=======
-                                            choices = list("Days" = "", "Months" = ""), selected = ""))
->>>>>>> 2595442f42795ab4417d64c895bfcbcd033cdf8d
-                    )
-                    
+                    ),
+                    p("This is where the text will appear. How much can I fit before the layout gets more messed up? I don't
+                      know I'm going to keep going until it stops.")
            ),
 
 
@@ -98,8 +100,8 @@ navbarPage("NYC Taxi and RideSharing",
                     #This will be to pick in whether you want to see 
                     #yellow taxi's, for-hire vehicles, or both                    
                     column(3, offset = 0, 
-                           div(style = "font-size: 10px; padding: 0px 0px; margin:15%",
-                               radioButtons("radio", label = h3("Transportation Services"),
+                           div(style = "font-size: 10px; padding: 0px 0px; margin:0%",
+                               radioButtons("radio", label = h5("Transportation Services"),
                                             choices = list("Taxi Trends" = "taxi", "For Hire Vehicle Trends" = "FHV", 
                                                            "Both" = "both"), selected = "both")
                            )
@@ -107,8 +109,8 @@ navbarPage("NYC Taxi and RideSharing",
                     
                     #This will be for monthly range
                     column(4, offset = 1, 
-                           div(style = "font-size: 10px; padding: 0px 0px; margin:15%", 
-                               dateRangeInput("dates", label = h3("Date Range"),
+                           div(style = "font-size: 10px; padding: 0px 0px; margin:0%", 
+                               dateRangeInput("dates", label = h5("Date Range"),
                                               start = as.Date("2018-01-01"), end =as.Date("2018-07-01"))
                            )
                     )
@@ -116,11 +118,14 @@ navbarPage("NYC Taxi and RideSharing",
            
            #The third tab
            tabPanel("Example Week", 
-                    fluidRow(
-                        h3("A sample week, showing pickups by day.")
-                      ),
                       mainPanel(
-                        plotOutput("example_week"))
+      
+                        plotOutput("example_week"),
+                        
+                        h4("The Average Week"),
+                        
+                        p("This is an example week.")
+                      )
                     ),    
            
            
@@ -128,6 +133,7 @@ navbarPage("NYC Taxi and RideSharing",
            tabPanel("Table",
                     sidebarLayout(
                       sidebarPanel(
+                        h3("Quick Analysis"),
                         p("This table gives a summary of the total amount of for-hire vehicles and yellow taxis used by riders within
                           2018 from the months of January to June.")
                         ),
