@@ -28,14 +28,12 @@ monthly_data <- transport_data %>% group_by(month=floor_date(Date, "month")) %>%
 # Define server logic required to draw our plots
 shinyServer(function(input, output) {
   
-  ## Manipulatable summary text that changes with user input 
-  ## as the widgets of the main and side plots are altered.
+  
+  ## This is the server code for the second tab of our application "2018 Daily"
   
   ## This graph will show how different types of paid transport change in popularity 
   ## over time, with each point being the next day
   output$day_line_graph <- renderPlot({
-    
-    ## This is the server code for the second tab of our application "2018 Daily"
     
     ## Allows us to change the data the user sees based on what dates their interested in
     first_date <- input$dates[1]
@@ -92,8 +90,9 @@ shinyServer(function(input, output) {
         scale_y_continuous(limits = c(100000, 900000),
                            breaks = seq(from = 100000, to = 900000, by = 100000),
                            labels = scales::comma)
-      
     }
+    
+    basic_plot
   })
   
   ## For the tab "Table", we want to render a data table displaying the 2018 transport
