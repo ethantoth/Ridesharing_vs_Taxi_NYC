@@ -11,34 +11,31 @@ library(shiny)
 library(DT)
 
 # Define UI for application that draws a histogram
-shinyUI(fluidPage(
+shinyUI(fluidPage(theme = "theme.css",
 
 # Show a plot of the generated distribution
 navbarPage("NYC Taxi and RideSharing",
+           # tags$head(
+           #   tags$link(rel = "stylesheet", type = "text/css", href = "theme.css")
+           # )
            tabPanel("Home",
                     ## Function that imports a CSS font to use in the header of the main page
-                    tags$head(
-                      tags$style(HTML("
-                                      @import url('//fonts.googleapis.com/css?family=Lobster|Cabin:400,700');
-                                      "))
-                      ),
-                    headerPanel(
-                      h2("NYC Taxi vs. Ridesharing", 
-                         style = "font-family: 'Arial Black', Gadget, sans-serif;
-                         font-weight: 400; line-height: 1.1; 
-                         color: #000000;")
-                      ),
+                    #' tags$head(
+                    #'   tags$style(HTML("
+                    #'                   @import url('//fonts.googleapis.com/css?family=Lobster|Cabin:400,700');
+                    #'                   "))
+                    #'   ),
+                    #' headerPanel(
+                    #'   h2("NYC Taxi vs. Ridesharing", 
+                    #'      style = "font-family: 'Arial Black', Gadget, sans-serif;
+                    #'      font-weight: 400; line-height: 1.1; 
+                    #'      color: #000000;")
+                    #'   ),
                     
-                    p("The visualizations on this application meant to show how different types of paid transport have 
-                    increased or decreased in popularity. Our data is filtered down to 2018 (the months of January to June) 
-                    and the first month of every year from 2015. The intent of these visualizations to speak to the current 
-                    debate surrounding lose of business for taxi drivers in urban areas, such as New York. The lines across the graph 
-                    display the linear relationship of the amount of consumers over time for these types of paid vehicles. 
-                    The trends indicate that taxi use is slowly on the decline, while in contrast, for-hire
-                    vehicle use is sturdily inclining. From this data it can be inferred that for-hire vehicles (such as Uber or Lyft) 
-                    are becoming more popualr among consumers and with consequence taking away yellow taxi's business.")
+                    includeMarkdown("homeText.md")
+
                    
-            ),
+           ),
            tabPanel("2018 Daily Trends", 
                     fluidRow(
 
