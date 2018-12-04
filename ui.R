@@ -73,7 +73,7 @@ navbarPage("NYC Taxi and RideSharing",
                         h3("Manipulate the Data")
                       ),
                       mainPanel(
-                        plotOutput(""))
+                        plotOutput("monthly2018Trends"))
                     )
            ),
            

@@ -29,7 +29,7 @@ monthly_data <- transport_data %>% group_by(month=floor_date(Date, "month")) %>%
 shinyServer(function(input, output) {
   
   
-  ## This is the server code for the second tab of our application "2018 Daily"
+  ## This is the server code for the second tab of our application "2018 Daily Trends"
   
   ## This graph will show how different types of paid transport change in popularity 
   ## over time, with each point being the next day
@@ -95,7 +95,14 @@ shinyServer(function(input, output) {
     basic_plot
   })
   
-  ## For the tab "Table", we want to render a data table displaying the 2018 transport
+  ## This is the server code for the third tab of our application "2018 Monthly Trends"
+  
+  output$monthly2018Trends <- renderPlot({
+    
+  })
+  
+  
+  ## For the last tab "Table", we want to render a data table displaying the 2018 transport
   ## data from 2015 to 2018
   output$monthlyTable <- DT::renderDataTable({
     monthly_data
