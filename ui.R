@@ -60,16 +60,17 @@ navbarPage("NYC Taxi and RideSharing",
                                  dateRangeInput("dates", label = h3("Date Range"),
                                                 start = as.Date("2018-01-01"), end =as.Date("2018-07-01"))
                       
-                                 ),
+                                 )),
+                      
                       #This is for a widget that either displays the trend line(s) or not
                       column(5, offset = 2,
                              div(style = "font-size: 10px; padding: 0px 0px; margin:15%",
                                  radioButtons("trend", label = h3("Trend Line"),
                                               choices = list("Show Trend Line" = "show", 
-                                                             "Don't Show Line" = "dont_show"), selected = "show")
+                                                             "Don't Show Line" = "dont_show"), selected = "show"))
                              )
-                      ))
-            ),
+                      )
+           ),
            
            #The second tab
            tabPanel("2018 Monthly Trends",
@@ -77,6 +78,7 @@ navbarPage("NYC Taxi and RideSharing",
                     
                     plotOutput("monthly2018Trends"),
 
+                    
                     #This will be to pick in whether you want to see 
                     #yellow taxi's, for-hire vehicles, or both                    
                     column(3, offset = 0, 
@@ -120,6 +122,6 @@ navbarPage("NYC Taxi and RideSharing",
         )
     )
  )
-)
+
 
 
