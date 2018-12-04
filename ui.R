@@ -89,22 +89,20 @@ navbarPage("NYC Taxi and RideSharing",
            
            #The third tab
            tabPanel("Yearly Trends", 
-                    sidebarLayout(
-                      sidebarPanel(
-                        h3("Manipulate the Data")
+                    fluidRow(
+                        h3("Data for 2015-2018")
                       ),
                       mainPanel(
                         plotOutput(""))
-                    )    
-           ),
+                    ),    
+           
            
            #The fourth tab
            tabPanel("Table",
                     sidebarLayout(
                       sidebarPanel(
                         p("This table gives a summary of the total amount of for-hire vehicles and yellow taxis used by riders within
-                          2018 from the months of January to June."),
-                        h3("Manipulate the Data")
+                          2018 from the months of January to June.")
                         ),
                       mainPanel(
                         DT::dataTableOutput("monthlyTable"))
