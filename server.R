@@ -12,6 +12,7 @@ library(ggplot2)
 library(dplyr)
 library(lubridate)
 library(DT)
+library(reshape2)
 
 ## Reads in the data, and allows the data to be used by ggplot
 transport_data <- read.csv("data/final_reformat.csv", stringsAsFactors = FALSE, header = TRUE)
@@ -25,17 +26,20 @@ transport_data <-  transport_data %>% mutate(Date = as.Date(Date)) %>%
 monthly_data <- transport_data %>% group_by(month=floor_date(Date, "month")) %>% 
   summarise(FHV = sum(FHV), Yellow = sum(Yellow))
 
+
+yearly_data <- read.csv("data/yearlyTripData.csv", stringsAsFactors = FALSE, header = TRUE)
+melted_yearly_data <- melt(yearly_data)
+
+
 # Define server logic required to draw our plots
 shinyServer(function(input, output) {
   
-  ## Manipulatable summary text that changes with user input 
-  ## as the widgets of the main and side plots are altered.
+  
+  ## This is the server code for the second tab of our application "2018 Daily Trends"
   
   ## This graph will show how different types of paid transport change in popularity 
   ## over time, with each point being the next day
   output$day_line_graph <- renderPlot({
-    
-    ## This is the server code for the second tab of our application "2018 Daily"
     
     ## Allows us to change the data the user sees based on what dates their interested in
     first_date <- input$dates[1]
@@ -53,7 +57,6 @@ shinyServer(function(input, output) {
       
       basic_plot <- ggplot(day_line_graph_data, aes(x = Date, y = Yellow)) +
         geom_line(aes(y = Yellow, color = "Yellow Taxi")) +
-        geom_smooth(method = "lm", se = FALSE) +
         scale_colour_manual(values= "gold3") +
         theme_bw() +
         labs(title = "NYC Taxis Pickup Data", y = "Number of Pickups", 
@@ -67,7 +70,6 @@ shinyServer(function(input, output) {
       
       basic_plot <- ggplot(day_line_graph_data, aes(x = Date, y = FHV)) +
         geom_line(aes(y = FHV, color = "FHV")) +
-        geom_smooth(method = "lm", se = FALSE) +
         scale_colour_manual(values = "purple") +
         theme_bw() +
         labs(title = "NYC Taxis Pickup Data", y = "Number of Pickups", 
@@ -78,12 +80,9 @@ shinyServer(function(input, output) {
                            labels = scales::comma)
       
     } else if (input$radio == "both"){
-      
       basic_plot <- ggplot(day_line_graph_data, aes(x = Date, y = FHV)) +
         geom_line(aes(y = FHV, color = "FHV")) +
-        geom_smooth(method = "lm", se = FALSE) +
         geom_line(aes(y = Yellow, color = "Yellow Taxi")) +
-        geom_smooth(aes(y = Yellow), method = "lm", se = FALSE) +
         scale_colour_manual(values=c("purple", "gold3")) +
         theme_bw() +
         labs(title = "NYC Taxis vs For Hire Vehices", y = "Number of Pickups", 
@@ -92,11 +91,37 @@ shinyServer(function(input, output) {
         scale_y_continuous(limits = c(100000, 900000),
                            breaks = seq(from = 100000, to = 900000, by = 100000),
                            labels = scales::comma)
-      
     }
+    
+    if (input$trend == "show") {
+      basic_plot <- basic_plot +
+        geom_smooth(method = "lm", se = FALSE) 
+      if (input$radio != "FHV") {
+        basic_plot <- basic_plot +
+          geom_smooth(aes(y = Yellow), method = "lm", se = FALSE)
+        
+      }
+    }
+    
+    basic_plot
   })
   
-  ## For the tab "Table", we want to render a data table displaying the 2018 transport
+  ## This is the server code for the third tab of our application "2018 Monthly Trends"
+  
+  output$monthly2018Trends <- renderPlot({
+    ggplot(melted_yearly_data, aes(x = Date,value,fill=variable)) +
+      geom_bar(stat="identity",position="dodge") +
+      scale_fill_manual(values = c("purple", "gold3")) +
+      theme_bw() +
+      scale_y_continuous(labels = scales::comma, expand = c(0,0),
+                         limits = c(0, 20500000)) +
+      scale_x_discrete(labels = c("2015", "2016", "2017", "2018")) +
+      labs(title = "NYC Taxis vs For Hire Vehices in January from 2015 to 2018", y = "Number of Pickups",
+           fill = "Service Type")
+  })
+  
+  
+  ## For the last tab "Table", we want to render a data table displaying the 2018 transport
   ## data from 2015 to 2018
   output$monthlyTable <- DT::renderDataTable({
     monthly_data

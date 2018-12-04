@@ -6,6 +6,9 @@
 # 
 #    http://shiny.rstudio.com/
 #
+#talk about the data whether its skewed// questions on what they should be concluded
+##rendering a markdown file into
+##limitations of data, correlation does notimply casuation, links, pictures of us
 
 library(shiny)
 library(DT)
@@ -35,70 +38,102 @@ navbarPage("NYC Taxi and RideSharing",
                     includeMarkdown("homeText.md")
 
                    
-           ),
+
+            ),
+           
+           #The first tab
            tabPanel("2018 Daily Trends", 
                     fluidRow(
 
-                      #This will be to pick
-                      plotOutput("day_line_graph"),
-                      column(3, offset = 0, 
+                      #This will be to pick in whether you want to see 
+                      #yellow taxi's, for-hire vehicles, or both
+                      plotOutput("day_line_graph")
+                    ),
+                    fluidRow(
+                       column(3, 
                              div(style = "font-size: 10px; padding: 0px 0px; margin:15%",
                                  radioButtons("radio", label = h3("Transportation Services"),
                                               choices = list("Taxi Trends" = "taxi", "For Hire Vehicle Trends" = "FHV", 
                                                              "Both" = "both"), selected = "both")
-                             )
-                      ),
+                      )),
                       
-                      #This will be for average line
-                      column(4, offset = 1, 
+                      #This will be for picking the daily date range 
+                      column(4, 
                              div(style = "font-size: 10px; padding: 0px 0px; margin:15%", 
                                  dateRangeInput("dates", label = h3("Date Range"),
-                                                start = as.Date("2018-01-01"), end =as.Date("2018-07-01"))
-                                 )
-                      ),
+                                                start = as.Date("2018-01-01"), end = as.Date("2018-07-01"))
                       
-                      #This will be for date range
-                      column(5, offset = 2, 
+                                 )),
+                      
+                      #This is for a widget that either displays the trend line(s) or not
+                      column(5,
                              div(style = "font-size: 10px; padding: 0px 0px; margin:15%",
-                                 uiOutput("")
-                             )))
-                    ),
-           
-           tabPanel("2018 Monthly Trends",
-                    sidebarLayout(
-                      sidebarPanel(
-                        h3("Manipulate the Data")
+                                 radioButtons("trend", label = h3("Trend Line"),
+                                              choices = list("Show Trend Line" = "show", 
+                                                             "Don't Show Line" = "dont_show"), selected = "show"))
+                             )
                       ),
-                      mainPanel(
-                        plotOutput(""))
+                    column(6,
+                           div(style = "font-size: 10px; padding: 0px 0px; margin:15%",
+                               radioButtons("trend", label = h3("View data in:"),
+                                            choices = list("Days" = "", "Months" = ""), selected = "")
+                           )
+                    )
+                    
+           ),
+
+
+           
+           #The second tab
+           tabPanel("2018 Monthly Trends",
+
+                    
+                    plotOutput("monthly2018Trends"),
+
+                    
+                    #This will be to pick in whether you want to see 
+                    #yellow taxi's, for-hire vehicles, or both                    
+                    column(3, offset = 0, 
+                           div(style = "font-size: 10px; padding: 0px 0px; margin:15%",
+                               radioButtons("radio", label = h3("Transportation Services"),
+                                            choices = list("Taxi Trends" = "taxi", "For Hire Vehicle Trends" = "FHV", 
+                                                           "Both" = "both"), selected = "both")
+                           )
+                    ),
+                    
+                    #This will be for monthly range
+                    column(4, offset = 1, 
+                           div(style = "font-size: 10px; padding: 0px 0px; margin:15%", 
+                               dateRangeInput("dates", label = h3("Date Range"),
+                                              start = as.Date("2018-01-01"), end =as.Date("2018-07-01"))
+                           )
                     )
            ),
            
+           #The third tab
            tabPanel("Yearly Trends", 
-                    sidebarLayout(
-                      sidebarPanel(
-                        h3("Manipulate the Data")
+                    fluidRow(
+                        h3("Data for 2015-2018")
                       ),
                       mainPanel(
                         plotOutput(""))
-                    )    
-           ),
+                    ),    
+           
+           
+           #The fourth tab
            tabPanel("Table",
                     sidebarLayout(
                       sidebarPanel(
                         p("This table gives a summary of the total amount of for-hire vehicles and yellow taxis used by riders within
-                          2018 from the months of January to June."),
-                        h3("Manipulate the Data")
+                          2018 from the months of January to June.")
                         ),
                       mainPanel(
                         DT::dataTableOutput("monthlyTable"))
                     )
             )
-          # In our summary we need to make sure to address why we picked only several months in 2018(we can just say how the data
-          # only displays those months currently).
-           # tabPanel("Summary", verbatimTextOutput("summary"))
         )
     )
-)
+ )
+
 
 
