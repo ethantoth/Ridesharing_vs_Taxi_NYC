@@ -71,8 +71,11 @@ navbarPage("NYC Taxi and RideSharing",
            
            #The second tab
            tabPanel("2018 Monthly Trends",
+
                     
                     plotOutput("monthly2018Trends"),
+
+                    
                     
                     #This will be to pick in whether you want to see 
                     #yellow taxi's, for-hire vehicles, or both                    
@@ -117,5 +120,6 @@ navbarPage("NYC Taxi and RideSharing",
         )
     )
  )
+)
 
 
