@@ -15,31 +15,33 @@ library(DT)
 
 ## Reads in the data, and allows the data to be used by ggplot
 transport_data <- read.csv("data/final_reformat.csv", stringsAsFactors = FALSE, header = TRUE)
+
 transport_data <-  transport_data %>% mutate(Date = as.Date(Date)) %>%
   mutate(FHV = as.numeric(FHV)) %>% mutate(Yellow = as.numeric(Yellow)) %>% 
   filter(FHV > 450000) #deals with the major outlier in the FHV data
 
+
+## Allows us to view the data in months, which is much easier to visualized in bar graphs
 monthly_data <- transport_data %>% group_by(month=floor_date(Date, "month")) %>% 
   summarise(FHV = sum(FHV), Yellow = sum(Yellow))
 
 # Define server logic required to draw our plots
 shinyServer(function(input, output) {
   
-  ## Manipulatable summary text that changes with user input as the widgets of the main and side plots are altered. 
-  output$summary <- renderText({
-    paste("Using the provided UFO data, this map of the United States displays all UFO's that were shaped as a", input$select,
-          "on the date of", input$dates1, "that were observed flying in the sky at the position on the map.")
-  })
+  ## Manipulatable summary text that changes with user input 
+  ## as the widgets of the main and side plots are altered.
   
   ## This graph will show how different types of paid transport change in popularity 
   ## over time, with each point being the next day
   output$day_line_graph <- renderPlot({
     
-    ## This is the code for the first tab of our application
+    ## This is the server code for the second tab of our application "2018 Daily"
     
+    ## Allows us to change the data the user sees based on what dates their interested in
     first_date <- input$dates[1]
     final_date <- input$dates[2]
-
+    
+    ## Basic code so that we only display data the user is interested in
     day_line_graph_data <- transport_data %>%
      filter(Date >= first_date) %>%
      filter(Date <= final_date)
