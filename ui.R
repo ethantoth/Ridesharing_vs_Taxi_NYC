@@ -41,8 +41,7 @@ navbarPage("NYC Taxi and RideSharing",
             ),
            tabPanel("2018 Daily Trends", 
                     fluidRow(
-                      
-                
+
                       #This will be to pick
                       plotOutput("day_line_graph"),
                       column(3, offset = 0, 
@@ -65,7 +64,7 @@ navbarPage("NYC Taxi and RideSharing",
                       column(5, offset = 2, 
                              div(style = "font-size: 10px; padding: 0px 0px; margin:15%",
                                  uiOutput("")
-                             ))),
+                             )))
                     ),
            
            tabPanel("2018 Monthly Trends",
@@ -77,8 +76,15 @@ navbarPage("NYC Taxi and RideSharing",
                         plotOutput(""))
                     )
            ),
+           
            tabPanel("Yearly Trends", 
-                    
+                    sidebarLayout(
+                      sidebarPanel(
+                        h3("Manipulate the Data")
+                      ),
+                      mainPanel(
+                        plotOutput(""))
+                    )    
            ),
            tabPanel("Table",
                     sidebarLayout(
