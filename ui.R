@@ -75,11 +75,8 @@ navbarPage("NYC Taxi and RideSharing",
 
                     
                     plotOutput("monthly2018Trends"),
-<<<<<<< HEAD
-                    
-=======
 
->>>>>>> a236721366bc9e55321d9aac5a26bcd425583ee4
+                    
                     #This will be to pick in whether you want to see 
                     #yellow taxi's, for-hire vehicles, or both                    
                     column(3, offset = 0, 
