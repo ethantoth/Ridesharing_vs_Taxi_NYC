@@ -39,44 +39,55 @@ navbarPage("NYC Taxi and RideSharing",
                     are becoming more popualr among consumers and with consequence taking away yellow taxi's business.")
                    
             ),
+           
+           #The first tab
            tabPanel("2018 Daily Trends", 
                     fluidRow(
 
-                      #This will be to pick
+                      #This will be to pick in whether you want to see 
+                      #yellow taxi's, for-hire vehicles, or both
                       plotOutput("day_line_graph"),
                       column(3, offset = 0, 
                              div(style = "font-size: 10px; padding: 0px 0px; margin:15%",
                                  radioButtons("radio", label = h3("Transportation Services"),
                                               choices = list("Taxi Trends" = "taxi", "For Hire Vehicle Trends" = "FHV", 
                                                              "Both" = "both"), selected = "both")
-                             )
-                      ),
+                      )),
                       
-                      #This will be for average line
+                      #This will be for picking the daily date range 
                       column(4, offset = 1, 
                              div(style = "font-size: 10px; padding: 0px 0px; margin:15%", 
                                  dateRangeInput("dates", label = h3("Date Range"),
                                                 start = as.Date("2018-01-01"), end =as.Date("2018-07-01"))
                                  )
-                      ),
-                      
-                      #This will be for date range
-                      column(5, offset = 2, 
-                             div(style = "font-size: 10px; padding: 0px 0px; margin:15%",
-                                 uiOutput("")
-                             )))
-                    ),
+                      ))
+            ),
            
+           #The second tab
            tabPanel("2018 Monthly Trends",
-                    sidebarLayout(
-                      sidebarPanel(
-                        h3("Manipulate the Data")
-                      ),
-                      mainPanel(
-                        plotOutput(""))
+                    
+                    plotOutput(""),
+                    
+                    #This will be to pick in whether you want to see 
+                    #yellow taxi's, for-hire vehicles, or both                    
+                    column(3, offset = 0, 
+                           div(style = "font-size: 10px; padding: 0px 0px; margin:15%",
+                               radioButtons("radio", label = h3("Transportation Services"),
+                                            choices = list("Taxi Trends" = "taxi", "For Hire Vehicle Trends" = "FHV", 
+                                                           "Both" = "both"), selected = "both")
+                           )
+                    ),
+                    
+                    #This will be for monthly range
+                    column(4, offset = 1, 
+                           div(style = "font-size: 10px; padding: 0px 0px; margin:15%", 
+                               dateRangeInput("dates", label = h3("Date Range"),
+                                              start = as.Date("2018-01-01"), end =as.Date("2018-07-01"))
+                           )
                     )
            ),
            
+           #The third tab
            tabPanel("Yearly Trends", 
                     sidebarLayout(
                       sidebarPanel(
@@ -86,6 +97,8 @@ navbarPage("NYC Taxi and RideSharing",
                         plotOutput(""))
                     )    
            ),
+           
+           #The fourth tab
            tabPanel("Table",
                     sidebarLayout(
                       sidebarPanel(
@@ -97,11 +110,8 @@ navbarPage("NYC Taxi and RideSharing",
                         DT::dataTableOutput("monthlyTable"))
                     )
             )
-          # In our summary we need to make sure to address why we picked only several months in 2018(we can just say how the data
-          # only displays those months currently).
-           # tabPanel("Summary", verbatimTextOutput("summary"))
         )
     )
-)
+ )
 
 
