@@ -26,6 +26,47 @@ basic_plot <- ggplot(correct_class, aes(x = Date, y = FHV)) +
 basic_plot
 
 
+## Make a plot for 1 week span, with day labels
+
+one_week <- correct_class %>%
+  filter(Date >= as.Date("2018-03-04")) %>%
+  filter(Date <= as.Date("2018-03-10"))
+
+single_week <- ggplot(one_week, aes(x = Date, y = FHV)) +
+  geom_line(aes(y = FHV, color = "FHV")) +
+  geom_line(aes(y = Yellow, color = "Yellow Taxi")) +
+  scale_colour_manual(values=c("purple", "gold3")) +
+  theme_bw() +
+  labs(title = "NYC Taxis vs For Hire Vehices", y = "Number of Pickups", 
+       color = "Service Type") +
+  scale_x_date(date_breaks = "1 day", labels = scales::date_format("%A")) +
+  #scale_x_discrete(labels = c("2015", "2016", "2017", "2018", "why", "pls", "crying")) +
+  scale_y_continuous(limits = c(100000, 900000),
+                     breaks = seq(from = 100000, to = 900000, by = 100000),
+                     labels = scales::comma)
+single_week
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ## This is a barplot that adds a bar for every data entry input. It does not
 ## appear to be helpful for daily data, but may be for monthly
 
