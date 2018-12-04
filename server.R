@@ -28,7 +28,7 @@ monthly_data <- transport_data %>% group_by(month=floor_date(Date, "month")) %>%
 
 
 yearly_data <- read.csv("data/yearlyTripData.csv", stringsAsFactors = FALSE, header = TRUE)
-yearly_data <- melt(transport_data)
+melted_yearly_data <- melt(yearly_data)
 
 
 # Define server logic required to draw our plots
@@ -109,17 +109,17 @@ shinyServer(function(input, output) {
   
   ## This is the server code for the third tab of our application "2018 Monthly Trends"
   
-  # output$monthly2018Trends <- renderPlot({
-  #   ggplot(yearly_data, aes(x = Date,value,fill=variable)) +
-  #     geom_bar(stat="identity",position="dodge") +
-  #     scale_fill_manual(values = c("purple", "gold3")) +
-  #     theme_bw() +
-  #     scale_y_continuous(labels = scales::comma, expand = c(0,0),
-  #                        limits = c(0, 20500000)) +
-  #     scale_x_discrete(labels = c("2015", "2016", "2017", "2018")) +
-  #     labs(title = "NYC Taxis vs For Hire Vehices in January from 2015 to 2018", y = "Number of Pickups",
-  #          fill = "Service Type")
-  # })
+  output$monthly2018Trends <- renderPlot({
+    ggplot(melted_yearly_data, aes(x = Date,value,fill=variable)) +
+      geom_bar(stat="identity",position="dodge") +
+      scale_fill_manual(values = c("purple", "gold3")) +
+      theme_bw() +
+      scale_y_continuous(labels = scales::comma, expand = c(0,0),
+                         limits = c(0, 20500000)) +
+      scale_x_discrete(labels = c("2015", "2016", "2017", "2018")) +
+      labs(title = "NYC Taxis vs For Hire Vehices in January from 2015 to 2018", y = "Number of Pickups",
+           fill = "Service Type")
+  })
   
   
   ## For the last tab "Table", we want to render a data table displaying the 2018 transport
