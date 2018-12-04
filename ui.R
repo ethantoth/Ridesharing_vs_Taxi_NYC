@@ -64,8 +64,9 @@ navbarPage("NYC Taxi and RideSharing",
                       #This is for a widget that either displays the trend line(s) or not
                       column(5, offset = 2,
                              div(style = "font-size: 10px; padding: 0px 0px; margin:15%",
-                                 radioButtons("radio", label = h3("Trend Line"),
-                                              choices = list("Show Trend Line" = "", "Don't Show Line" = ""), selected = "")
+                                 radioButtons("trend", label = h3("Trend Line"),
+                                              choices = list("Show Trend Line" = "show", 
+                                                             "Don't Show Line" = "dont_show"), selected = "show")
                              )
                       ))
             ),

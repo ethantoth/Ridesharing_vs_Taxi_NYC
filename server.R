@@ -51,7 +51,6 @@ shinyServer(function(input, output) {
       
       basic_plot <- ggplot(day_line_graph_data, aes(x = Date, y = Yellow)) +
         geom_line(aes(y = Yellow, color = "Yellow Taxi")) +
-        geom_smooth(method = "lm", se = FALSE) +
         scale_colour_manual(values= "gold3") +
         theme_bw() +
         labs(title = "NYC Taxis Pickup Data", y = "Number of Pickups", 
@@ -65,7 +64,6 @@ shinyServer(function(input, output) {
       
       basic_plot <- ggplot(day_line_graph_data, aes(x = Date, y = FHV)) +
         geom_line(aes(y = FHV, color = "FHV")) +
-        geom_smooth(method = "lm", se = FALSE) +
         scale_colour_manual(values = "purple") +
         theme_bw() +
         labs(title = "NYC Taxis Pickup Data", y = "Number of Pickups", 
@@ -79,9 +77,7 @@ shinyServer(function(input, output) {
       
       basic_plot <- ggplot(day_line_graph_data, aes(x = Date, y = FHV)) +
         geom_line(aes(y = FHV, color = "FHV")) +
-        geom_smooth(method = "lm", se = FALSE) +
         geom_line(aes(y = Yellow, color = "Yellow Taxi")) +
-        geom_smooth(aes(y = Yellow), method = "lm", se = FALSE) +
         scale_colour_manual(values=c("purple", "gold3")) +
         theme_bw() +
         labs(title = "NYC Taxis vs For Hire Vehices", y = "Number of Pickups", 
@@ -90,6 +86,16 @@ shinyServer(function(input, output) {
         scale_y_continuous(limits = c(100000, 900000),
                            breaks = seq(from = 100000, to = 900000, by = 100000),
                            labels = scales::comma)
+    }
+    
+    if (input$trend == "show") {
+      basic_plot <- basic_plot +
+        geom_smooth(method = "lm", se = FALSE) 
+      if (input$radio != "FHV") {
+        basic_plot <- basic_plot +
+          geom_smooth(aes(y = Yellow), method = "lm", se = FALSE)
+        
+      }
     }
     
     basic_plot
