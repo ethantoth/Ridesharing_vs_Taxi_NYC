@@ -12,6 +12,7 @@ library(ggplot2)
 library(dplyr)
 library(lubridate)
 library(DT)
+library(reshape2)
 
 ## Reads in the data, and allows the data to be used by ggplot
 transport_data <- read.csv("data/final_reformat.csv", stringsAsFactors = FALSE, header = TRUE)
@@ -27,8 +28,7 @@ monthly_data <- transport_data %>% group_by(month=floor_date(Date, "month")) %>%
 
 
 yearly_data <- read.csv("data/yearlyTripData.csv", stringsAsFactors = FALSE, header = TRUE)
-##yearly_data <- melt(transport_data)
-
+yearly_data <- melt(transport_data)
 
 
 # Define server logic required to draw our plots
