@@ -15,8 +15,18 @@ shinyUI(fluidPage(
 
 # Show a plot of the generated distribution
 navbarPage("NYC Taxi and RideSharing",
-           
-           tabPanel("Home", 
+           tabPanel("Home",
+                    p("The visualizations on this application meant to show how different types of paid transport have 
+                    increased or decreased in popularity. Our data is filtered down to 2018 (the months of January to June) 
+                    and the first month of every year from 2015. The intent of these visualizations to speak to the current 
+                    debate surrounding lose of business for taxi drivers in urban areas, such as New York. The lines across the graph 
+                    display the linear relationship of the amount of consumers over time for these types of paid vehicles. 
+                    The trends indicate that taxi use is slowly on the decline, while in contrast, for-hire
+                    vehicle use is sturdily inclining. From this data it can be inferred that for-hire vehicles (such as Uber or Lyft) 
+                    are becoming more popualr among consumers and with consequence taking away yellow taxi's business.")
+                   
+            ),
+           tabPanel("2018 Daily Trends", 
                     fluidRow(
                       
                       ## Function that imports a CSS font to use in the header of the main page
@@ -57,17 +67,9 @@ navbarPage("NYC Taxi and RideSharing",
                              div(style = "font-size: 10px; padding: 0px 0px; margin:15%",
                                  uiOutput("")
                              ))),
-                      p("The visualizations on this application meant to show how different types of paid transport have 
-                      increased or decreased in popularity. Our data is filtered down to 2018 (the months of January to June) 
-                      and the first month of every year from 2015. The intent of these visualizations to speak to the current 
-                      debate surrounding lose of business for taxi drivers in urban areas, such as New York. The lines across the graph 
-                      display the linear relationship of the amount of consumers over time for these types of paid vehicles. 
-                      The trends indicate that taxi use is slowly on the decline, while in contrast, for-hire
-                      vehicle use is sturdily inclining. From this data it can be inferred that for-hire vehicles (such as Uber or Lyft) 
-                      are becoming more popualr among consumers and with consequence taking away yellow taxi's business.")
                     ),
            
-           tabPanel("Visualization 1",
+           tabPanel("2018 Monthly Trends",
                     sidebarLayout(
                       sidebarPanel(
                         h3("Manipulate the Data")
@@ -76,20 +78,23 @@ navbarPage("NYC Taxi and RideSharing",
                         plotOutput(""))
                     )
            ),
-           tabPanel("Data", 
+           tabPanel("Yearly Trends", 
+                    
+           ),
+           tabPanel("Table",
                     sidebarLayout(
                       sidebarPanel(
                         p("This table gives a summary of the total amount of for-hire vehicles and yellow taxis used by riders within
-                      2018 from the months of January to June."),
+                          2018 from the months of January to June."),
                         h3("Manipulate the Data")
-                      ),
+                        ),
                       mainPanel(
                         DT::dataTableOutput("monthlyTable"))
                     )
-           ),
+            )
           # In our summary we need to make sure to address why we picked only several months in 2018(we can just say how the data
           # only displays those months currently).
-           tabPanel("Summary", verbatimTextOutput("summary"))
+           # tabPanel("Summary", verbatimTextOutput("summary"))
         )
     )
 )
