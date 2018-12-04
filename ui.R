@@ -16,6 +16,12 @@ shinyUI(fluidPage(
 # Show a plot of the generated distribution
 navbarPage("NYC Taxi and RideSharing",
            tabPanel("Home",
+                    ## Function that imports a CSS font to use in the header of the main page
+                    tags$head(
+                      tags$style(HTML("
+                                      @import url('//fonts.googleapis.com/css?family=Lobster|Cabin:400,700');
+                                      "))
+                      ),
                     headerPanel(
                       h2("NYC Taxi vs. Ridesharing", 
                          style = "font-family: 'Arial Black', Gadget, sans-serif;
@@ -36,21 +42,7 @@ navbarPage("NYC Taxi and RideSharing",
            tabPanel("2018 Daily Trends", 
                     fluidRow(
                       
-                      ## Function that imports a CSS font to use in the header of the main page
-                      tags$head(
-                        tags$style(HTML("
-                                        @import url('//fonts.googleapis.com/css?family=Lobster|Cabin:400,700');
-                                        "))
-                        ),
-                      
-                      # Header Panel that displays the CSS header with new font
-                      headerPanel(
-                        h2("NYC Taxi vs. Ridesharing", 
-                           style = "font-family: 'Arial Black', Gadget, sans-serif;
-                           font-weight: 400; line-height: 1.1; 
-                           color: #000000;")
-                        ),
-                      
+                
                       #This will be to pick
                       plotOutput("day_line_graph"),
                       column(3, offset = 0, 
