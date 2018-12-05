@@ -16,26 +16,27 @@ navbarPage("NYC Taxi and RideSharing",
            ## A user can change the range of dates presented on the graph, add a
            ## trendline to the graph, and choose whether to see Taxi data,
            ## For Hire Vehicle data, or both.
+           
            tabPanel("2018 Daily Trends", 
                     fluidRow(
                     
                       h3("Pickups for NYC Yellow Taxis vs For Hire Vehices"),
                       
-                      #This will be to pick in whether you want to see 
-                      #yellow taxi's, for-hire vehicles, or both
+                      ## This will be to pick in whether you want to see 
+                      ## yellow taxi's, for-hire vehicles, or both.
                       plotOutput("day_line_graph")
                     ),
                     fluidRow(
                        column(2, offset = 2, 
                               
-                            ##add padding to seperate the widgets more
+                            ## add padding to seperate the widgets more
                              div(style = "font-size: 10px",
                                  radioButtons("radioTab2", label = h5("Transportation Services"),
                                               choices = list("Taxi Trends" = "taxi", "For Hire Vehicle Trends" = "FHV", 
                                                              "Both" = "both"), selected = "both")
                       )),
                       
-                      #This will be for picking the daily date range 
+                      ## This will be for picking the daily date range 
                       column(3, 
                              div(style = "font-size: 10px", 
                                  dateRangeInput("datesTab2", label = h5("Date Range"),
@@ -43,7 +44,7 @@ navbarPage("NYC Taxi and RideSharing",
                       
                                  )),
                       
-                      #This is for a widget that either displays the trend line(s) or not
+                      ## This is for a widget that either displays the trend line(s) or not
                       column(2,
                              div(style = "font-size: 10px",
                                  radioButtons("trendTab2", label = h5("Trend Line"),
@@ -66,26 +67,27 @@ navbarPage("NYC Taxi and RideSharing",
                                a steady rise in FHV pickups."))
            ),
 
-           ## This is the second tab, that presents a bar graph containing pickup counts for
-           ## the entire year, from 2015 to 2018. A user can change the months shown, and pick
-           ## between Taxi data, For Hire Vehicle data, or both.
+           ## This is the second tab, that presents a bar graph containing 
+           ## pickup counts for the entire year, from 2015 to 2018. A user 
+           ## can change the months shown, and pick between Taxi data, For 
+           ## Hire Vehicle data, or both.
            
            tabPanel("Yearly Trends",
                     h3("Pickups in January for NYC: Yellow Taxis vs. For Hire Vehicles"),
 
                     plotOutput("yearly_trends"),
                     fluidRow(
-                    #This will be to pick in whether you want to see 
-                    #yellow taxi's, for-hire vehicles, or both                    
+                    ## This will be to pick in whether you want to see 
+                    ## yellow taxi's, for-hire vehicles, or both                    
                     column(3, offset = 3,
                            div(style = "font-size: 10px; padding: 0px 0px; margin:0%",
                                radioButtons("radioTab3", label = h5("Transportation Services"),
-                                            choices = list("Taxi Trends" = "Yellow", "For Hire Vehicle Trends" = "FHV", 
+                                            choices = list("Taxi Trends" = "Yellow", "For Hire Vehicle Trends" = "FHV",
                                                            "Both" = "both"), selected = "both")
                            )
                     ),
                     
-                    #This will be for monthly range
+                    ## This will be for monthly range
                     column(4, offset = 1, 
                            div(style = "font-size: 10px; padding: 0px 0px; margin:0%", 
                                dateRangeInput("datesTab3", label = h5("Date Range"),
@@ -127,12 +129,14 @@ navbarPage("NYC Taxi and RideSharing",
            
            ## This is the fourth tab, that presents a summary of the data
            ## used in this app, as well as an analysis of that data.
+           
            tabPanel("Data Table",
                     sidebarLayout(
                       sidebarPanel(
                         h3("Quick Analysis"),
-                        p("This table displays the total amount of For-Hire Vehicles and NYC taxis that were
-                          used from January, 2018 to June, 2018. The columns are broken down by"),
+                        p("This table displays the total amount of For-Hire Vehicles 
+                          and NYC taxis that were used from January, 2018 to June, 2018. 
+                          The columns are broken down by"),
                         tags$ul(
                           tags$li("Month"), 
                           tags$li("For-Hire Vehicles"), 
@@ -159,6 +163,7 @@ navbarPage("NYC Taxi and RideSharing",
            
            #This is the final conclusion tab. It renders a markdown file
            #which was created in atom.
+           
            tabPanel("Conclusion",
                     includeMarkdown("conclusion.md")      
            )
