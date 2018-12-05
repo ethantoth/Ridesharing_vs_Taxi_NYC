@@ -40,8 +40,7 @@ navbarPage("NYC Taxi and RideSharing",
                     #     div(style = "background-color: blue; width: 100%; height: 100%;")
                     #   )
                     # ),
-                    p("HI")
-                    ##includeMarkdown("homeText.md")
+                    includeMarkdown("homeText.md")
 
                    
 
