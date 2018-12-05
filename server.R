@@ -23,13 +23,49 @@ transport_data <-  transport_data %>% mutate(Date = as.Date(Date)) %>%
 
 
 ## Allows us to view the data in months, which is much easier to visualized in bar graphs
-monthly_data <- transport_data %>% group_by(month=floor_date(Date, "month")) %>% 
+monthly_data <- transport_data %>% group_by(Date = floor_date(Date, "month")) %>% 
   summarise(FHV = sum(FHV), Yellow = sum(Yellow))
 
 
 yearly_data <- read.csv("data/yearlyTripData.csv", stringsAsFactors = FALSE, header = TRUE)
 melted_yearly_data <- melt(yearly_data)
 
+## This function is called by day_line_graph and generates a ggplot graph
+
+generate_day_line_plot <- function(monthlyOrDaily){
+  
+  if (input$radioTab2 == "taxi") {
+    
+    basic_plot <- ggplot(day_line_graph_data, aes(x = Date, y = Yellow)) +
+      geom_line(aes(y = Yellow, color = "Yellow Taxi"))
+  } else if(input$radioTab2 == "FHV") {
+    
+    basic_plot <- ggplot(day_line_graph_data, aes(x = Date, y = Yellow)) +
+      geom_line(aes(y = Yellow, color = "Yellow Taxi")) +
+      scale_colour_manual(values= "gold3") +
+      theme_bw() +
+      labs(title = "NYC Taxis Pickup Data", y = "Number of Pickups", 
+           color = "Service Type") +
+      scale_x_date(date_breaks = "1 month") +
+      scale_y_continuous(limits = c(150000, 400000),
+                         breaks = seq(from = 100000, to = 400000, by = 100000),
+                         labels = scales::comma)
+  } else {
+    
+    basic_plot <- ggplot(day_line_graph_data, aes(x = Date, y = Yellow)) +
+      geom_line(aes(y = Yellow, color = "Yellow Taxi")) +
+      scale_colour_manual(values= "gold3") +
+      theme_bw() +
+      labs(title = "NYC Taxis Pickup Data", y = "Number of Pickups", 
+           color = "Service Type") +
+      scale_x_date(date_breaks = "1 month") +
+      scale_y_continuous(limits = c(150000, 400000),
+                         breaks = seq(from = 100000, to = 400000, by = 100000),
+                         labels = scales::comma)
+  }
+  
+  basic_plot
+}
 
 # Define server logic required to draw our plots
 shinyServer(function(input, output) {
@@ -42,69 +78,83 @@ shinyServer(function(input, output) {
   output$day_line_graph <- renderPlot({
     
     ## Allows us to change the data the user sees based on what dates their interested in
-    first_date <- input$dates[1]
-    final_date <- input$dates[2]
+    first_date <- input$datesTab2[1]
+    final_date <- input$datesTab2[2]
     
     ## Basic code so that we only display data the user is interested in
     day_line_graph_data <- transport_data %>%
      filter(Date >= first_date) %>%
      filter(Date <= final_date)
     
+    ## Adjust based on if the user wants daily or monthly totals
+    month_line_graph_data <- monthly_data %>%
+      filter(Date >= first_date) %>%
+      filter(Date <= final_date)
+    
+    ## Selects daily or monthly view for plot
+    line_graph_data <- day_line_graph_data
+    
+    if(input$dailyTab2 == "monthly") {
+      line_graph_data <- month_line_graph_data
+    }
+    
     ## This is where we generate the plot based on what type of data the user
     ## is interested in based on the radio widget
     
-    if (input$radio == "taxi") {
+    if (input$radioTab2 == "taxi") {
       
-      basic_plot <- ggplot(day_line_graph_data, aes(x = Date, y = Yellow)) +
+      basic_plot <- ggplot(line_graph_data, aes(x = Date, y = Yellow)) +
         geom_line(aes(y = Yellow, color = "Yellow Taxi")) +
         scale_colour_manual(values= "gold3") +
         theme_bw() +
         labs(title = "NYC Taxis Pickup Data", y = "Number of Pickups", 
              color = "Service Type") +
-        scale_x_date(date_breaks = "1 month") +
-        scale_y_continuous(limits = c(150000, 400000),
-                           breaks = seq(from = 100000, to = 400000, by = 100000),
-                           labels = scales::comma)
+        scale_x_date(date_breaks = "1 month") #+
+        # scale_y_continuous(limits = c(150000, 400000),
+        #                    breaks = seq(from = 100000, to = 400000, by = 100000),
+        #                    labels = scales::comma)
       
-    } else if (input$radio == "FHV"){
+    } else if (input$radioTab2 == "FHV"){
       
-      basic_plot <- ggplot(day_line_graph_data, aes(x = Date, y = FHV)) +
+      basic_plot <- ggplot(line_graph_data, aes(x = Date, y = FHV)) +
         geom_line(aes(y = FHV, color = "FHV")) +
         scale_colour_manual(values = "purple") +
         theme_bw() +
         labs(title = "NYC Taxis Pickup Data", y = "Number of Pickups", 
              color = "Service Type") +
-        scale_x_date(date_breaks = "1 month") +
-        scale_y_continuous(limits = c(450000, 900000),
-                           breaks = seq(from = 300000, to = 900000, by = 100000),
-                           labels = scales::comma)
+        scale_x_date(date_breaks = "1 month") #+
+        # scale_y_continuous(limits = c(450000, 900000),
+        #                    breaks = seq(from = 300000, to = 900000, by = 100000),
+        #                    labels = scales::comma)
       
-    } else if (input$radio == "both"){
-      basic_plot <- ggplot(day_line_graph_data, aes(x = Date, y = FHV)) +
+    } else if (input$radioTab2 == "both"){
+      basic_plot <- ggplot(line_graph_data, aes(x = Date, y = FHV)) +
         geom_line(aes(y = FHV, color = "FHV")) +
         geom_line(aes(y = Yellow, color = "Yellow Taxi")) +
         scale_colour_manual(values=c("purple", "gold3")) +
         theme_bw() +
         labs(title = "NYC Taxis vs For Hire Vehices", y = "Number of Pickups", 
              color = "Service Type") +
-        scale_x_date(date_breaks = "1 month") +
-        scale_y_continuous(limits = c(100000, 900000),
-                           breaks = seq(from = 100000, to = 900000, by = 100000),
-                           labels = scales::comma)
-      basic_plot <- ggplot(monthly_data, aes(x = month, y = FHV)) +
-        geom_line(aes(y = FHV, color = "FHV")) +
-        geom_line(aes(y = Yellow, color = "Yellow Taxi")) +
-        scale_colour_manual(values=c("purple", "gold3")) +
-        theme_bw() +
-        labs(title = "NYC Taxis vs For Hire Vehices", y = "Number of Pickups", 
-             color = "Service Type") +
-        scale_x_date(date_breaks = "1 month")
+        scale_x_date(date_breaks = "1 month") #+
+        # scale_y_continuous(limits = c(100000, 900000),
+        #                    breaks = seq(from = 100000, to = 900000, by = 100000),
+        #                    labels = scales::comma)
     }
     
-    if (input$trend == "show") {
+    
+    # basic_plot <- ggplot(monthly_data, aes(x = month, y = FHV)) +
+    #   geom_line(aes(y = FHV, color = "FHV")) +
+    #   geom_line(aes(y = Yellow, color = "Yellow Taxi")) +
+    #   scale_colour_manual(values=c("purple", "gold3")) +
+    #   theme_bw() +
+    #   labs(title = "NYC Taxis vs For Hire Vehices", y = "Number of Pickups", 
+    #        color = "Service Type") +
+    #   scale_x_date(date_breaks = "1 month")
+    
+    if (input$trendTab2 == "show") {
       basic_plot <- basic_plot +
         geom_smooth(method = "lm", se = FALSE) 
-      if (input$radio != "FHV") {
+      if (input$radioTab2 != "FHV") {
         basic_plot <- basic_plot +
           geom_smooth(aes(y = Yellow), method = "lm", se = FALSE)
         
