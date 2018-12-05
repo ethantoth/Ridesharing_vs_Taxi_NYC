@@ -63,7 +63,7 @@ navbarPage("NYC Taxi and RideSharing",
                     ),
                     fluidRow(
                        column(1, 
-                             div(style = "font-size: 10px; padding: 0px 0px; margin:0%",
+                             div(style = "font-size: 10px",
                                  radioButtons("radioTab2", label = h5("Transportation Services"),
                                               choices = list("Taxi Trends" = "taxi", "For Hire Vehicle Trends" = "FHV", 
                                                              "Both" = "both"), selected = "both")
@@ -71,7 +71,7 @@ navbarPage("NYC Taxi and RideSharing",
                       
                       #This will be for picking the daily date range 
                       column(2, 
-                             div(style = "font-size: 10px; padding: 0px 0px; margin:0%", 
+                             div(style = "font-size: 10px", 
                                  dateRangeInput("datesTab2", label = h5("Date Range"),
                                                 start = as.Date("2018-01-01"), end = as.Date("2018-07-01"))
                       
@@ -79,13 +79,13 @@ navbarPage("NYC Taxi and RideSharing",
                       
                       #This is for a widget that either displays the trend line(s) or not
                       column(1,
-                             div(style = "font-size: 10px; padding: 0px 0px; margin:0%",
+                             div(style = "font-size: 10px",
                                  radioButtons("trendTab2", label = h5("Trend Line"),
                                               choices = list("Show Trend Line" = "show", 
                                                              "Don't Show Line" = "dont_show"), selected = "show"))
                              ),
-                    column(1,
-                           div(style = "font-size: 10px; padding: 0px 0px; margin:0%",
+                      column(1,
+                             div(style = "font-size: 10px",
                                radioButtons("dailyTab2", label = h5("View data in:"),
                                             choices = list("Days" = "daily", "Months" = "monthly"), 
                                             selected = "daily"))
@@ -139,7 +139,6 @@ navbarPage("NYC Taxi and RideSharing",
                           being more popular on weekdays than on weekends.")
                       )
                     ),    
-           
            
            #The fourth tab
            tabPanel("Data Table",
