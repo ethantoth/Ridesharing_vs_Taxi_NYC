@@ -78,7 +78,7 @@ navbarPage("NYC Taxi and RideSharing",
                     column(6,
                            div(style = "font-size: 10px; padding: 0px 0px; margin:15%",
                                radioButtons("trend", label = h3("View data in:"),
-                                            choices = list("Days" = "", "Months" = "",), selected = "")
+                                            choices = list("Days" = "", "Months" = ""), selected = "")
                     
            ),
 
@@ -134,6 +134,8 @@ navbarPage("NYC Taxi and RideSharing",
         )
     )
  )
+)
+)
 
 
 
