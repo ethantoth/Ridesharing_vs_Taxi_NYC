@@ -63,6 +63,8 @@ navbarPage("NYC Taxi and RideSharing",
                     ),
                     fluidRow(
                        column(1, 
+                              
+                            ##add padding to seperate the widgets more
                              div(style = "font-size: 10px",
                                  radioButtons("radioTab2", label = h5("Transportation Services"),
                                               choices = list("Taxi Trends" = "taxi", "For Hire Vehicle Trends" = "FHV", 
