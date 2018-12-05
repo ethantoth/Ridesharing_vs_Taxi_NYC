@@ -131,25 +131,44 @@ navbarPage("NYC Taxi and RideSharing",
            
            
            #The fourth tab
+           #The fourth tab
            tabPanel("Table",
                     sidebarLayout(
                       sidebarPanel(
                         h3("Quick Analysis"),
-                        p("The table to right displays the total amount of for-hire vehicles and NYC taxis that were
-                          used from January, 2018 to June, 2018."),
+                        p("This table displays the total amount of For-Hire Vehicles and NYC taxis that were
+                          used from January, 2018 to June, 2018. The columns are broken down by"),
                         tags$ul(
-                          tags$li("First list item"), 
-                          tags$li("Second list item"), 
-                          tags$li("Third list item")
+                          tags$li("Month"), 
+                          tags$li("For-Hire Vehicles"), 
+                          tags$li("Taxis")
                         ),
-                        p("This table gives a summary of the total amount of for-hire vehicles and yellow taxis used by riders within
-                          2018 from the months of January to June.")
+                        p("The amount of entries are limited to six values to stay within the scope of our questions.")
                         ),
                       mainPanel(
                         DT::dataTableOutput("monthlyTable")
                       )
-                    )
-            )
+           ),
+           fluidRow(
+             h3("Building the Data Frame"),
+             p("When first imagining how to visualize the data we wished to portray from the NYC TLC it was 
+               quickly understood that whatever we were about to do would have to require an immense amount of 
+               data splicing and reconfiguration. Using the popular R packages of dplyr and ggplot in conjunction
+               with each other the csv file slowly started to form itself into a usable and comapct data frame."),
+             h3("Reconfiguration"),
+             
+             ## Here is where you can talk about how exactly you compacted the data Pierce.
+             p(""),
+             
+             p("Use the button below to view the source code of our data reconstruction."),
+             actionButton("codeButton", "Source Code")
+             # hidden(
+             #   div(id='text_div',
+             #       verbatimTextOutput("hiddenText")
+             #   )
+             # )
+             )
+           )
         )
     )
  )

@@ -208,6 +208,13 @@ shinyServer(function(input, output) {
   output$monthlyTable <- DT::renderDataTable({
     monthly_data
   })
+  
+  ## Add your code here Pierce, within the renderText portion. 
+  observeEvent(input$codeButton, {
+    toggle('text_div')
+    output$hiddenText <- renderText({"ahh you pressed it"})
+  })
+  
 })
 
 
