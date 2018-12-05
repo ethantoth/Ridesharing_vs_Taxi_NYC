@@ -90,7 +90,12 @@ navbarPage("NYC Taxi and RideSharing",
                                             choices = list("Days" = "daily", "Months" = "monthly"), 
                                             selected = "daily"))
 
-                          )
+                          ),
+                      
+                      fluidRow(h4("Every Pickup Between January and July, 2018"),
+                      p("These are the sums of pickups in each year from 2015 to 2018.
+                      The plot indicates a steady decline of taxi pickups, and
+                      a steady rise in FHV pickups."))
                     )
            ),
 
@@ -119,15 +124,25 @@ navbarPage("NYC Taxi and RideSharing",
                                dateRangeInput("datesTab3", label = h5("Date Range"),
                                               start = as.Date("2015-01-01"), end =as.Date("2018-01-01"))
                            )
-                    )
+                    ),
+                    
+                    h4("Every Pickup in 2015, 2016, 2017, and 2018"),
+                    
+                    p("These are the sums of pickups in each year from 2015 to 2018.
+                      The plot indicates a steady decline of taxi pickups, and
+                      a steady rise in FHV pickups.")
+                    
                     
            ),
            
-           ## This is the third tab, that 
+           ## This is the third tab, that presents a static graph that represents
+           ## the average number of pickups on each day of the week, Monday through
+           ## Sunday, fom 2015 to 2018.
+           
            tabPanel("Weekly Trends", 
                       mainPanel(
                         
-                        h3("NYC Taxis vs For Hire Vehices - March 4th - 10th, 2018"),
+                        h3("NYC Taxis vs For Hire Vehices - Sums of Weekdays in 2018"),
       
                         plotOutput("example_week") ,
                         
@@ -140,7 +155,9 @@ navbarPage("NYC Taxi and RideSharing",
                       )
                     ),    
            
-           #The fourth tab
+           ## This is the fourth tab, that presents a summary of the data
+           ## used in this app, as well as an analysis of that data.
+           
            tabPanel("Data Table",
                     sidebarLayout(
                       sidebarPanel(
