@@ -48,7 +48,10 @@ navbarPage("NYC Taxi and RideSharing",
 
             ),
            
-           #The first tab
+           ## This is the first tab, with a line graph of number of pickups each day.
+           ## A user can change the range of dates presented on the graph, add a
+           ## trendline to the graph, and choose whether to see Taxi data,
+           ## For Hire Vehicle data, or both.
            tabPanel("2018 Daily Trends", 
                     fluidRow(
                     
@@ -59,7 +62,7 @@ navbarPage("NYC Taxi and RideSharing",
                       plotOutput("day_line_graph")
                     ),
                     fluidRow(
-                       column(3, 
+                       column(1, 
                              div(style = "font-size: 10px; padding: 0px 0px; margin:0%",
                                  radioButtons("radioTab2", label = h5("Transportation Services"),
                                               choices = list("Taxi Trends" = "taxi", "For Hire Vehicle Trends" = "FHV", 
@@ -67,7 +70,7 @@ navbarPage("NYC Taxi and RideSharing",
                       )),
                       
                       #This will be for picking the daily date range 
-                      column(4, 
+                      column(2, 
                              div(style = "font-size: 10px; padding: 0px 0px; margin:0%", 
                                  dateRangeInput("datesTab2", label = h5("Date Range"),
                                                 start = as.Date("2018-01-01"), end = as.Date("2018-07-01"))
@@ -75,13 +78,13 @@ navbarPage("NYC Taxi and RideSharing",
                                  )),
                       
                       #This is for a widget that either displays the trend line(s) or not
-                      column(5,
+                      column(1,
                              div(style = "font-size: 10px; padding: 0px 0px; margin:0%",
                                  radioButtons("trendTab2", label = h5("Trend Line"),
                                               choices = list("Show Trend Line" = "show", 
                                                              "Don't Show Line" = "dont_show"), selected = "show"))
                              ),
-                    column(5,
+                    column(1,
                            div(style = "font-size: 10px; padding: 0px 0px; margin:0%",
                                radioButtons("dailyTab2", label = h5("View data in:"),
                                             choices = list("Days" = "daily", "Months" = "monthly"), 
@@ -91,7 +94,10 @@ navbarPage("NYC Taxi and RideSharing",
                     )
            ),
 
-           #The second tab
+           ## This is the second tab, that presents a bar graph containing pickup counts for
+           ## the entire year, from 2015 to 2018. A user can change the months shown, and pick
+           ## between Taxi data, For Hire Vehicle data, or both.
+           
            tabPanel("Yearly Trends",
                     h3("Pickups in January for NYC: Yellow Taxis vs. For Hire Vehicles"),
 
@@ -117,7 +123,7 @@ navbarPage("NYC Taxi and RideSharing",
                     
            ),
            
-           #The third tab
+           ## This is the third tab, that 
            tabPanel("Weekly Trends", 
                       mainPanel(
                         
@@ -127,12 +133,14 @@ navbarPage("NYC Taxi and RideSharing",
                         
                          h4("The Average Week"),
                         
-                        p("This is an example week.")
+                        p("These are the average number of pickups in each day of the week. 
+                          For Hire Vehicles appear to peak in popularity during the weekends,
+                          Yellow Taxis, on the other hand, seem to be the opposite,
+                          being more popular on weekdays than on weekends.")
                       )
                     ),    
            
            
-           #The fourth tab
            #The fourth tab
            tabPanel("Data Table",
                     sidebarLayout(
