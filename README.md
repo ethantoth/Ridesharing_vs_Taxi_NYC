@@ -2,7 +2,7 @@
 
 **The Final Product**
 
-The link to our shiny.app: 
+The link to our shiny.app: [https://piercecave.shinyapps.io/Ridesharing_vs_Taxi_NYC/](https://piercecave.shinyapps.io/Ridesharing_vs_Taxi_NYC/)
 
 In our project we will be working with two data sets LINKS.
 - The first data set holds information about the New York City **yellow taxi trips** from the years 2015 - 2018.
