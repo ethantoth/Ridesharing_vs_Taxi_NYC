@@ -34,13 +34,14 @@ navbarPage("NYC Taxi and RideSharing",
                     #'      font-weight: 400; line-height: 1.1; 
                     #'      color: #000000;")
                     #'   ),
-                    fillPage(
-                      fillRow(
-                        div(style = "background-color: red; width: 100%; height: 100%;"),
-                        div(style = "background-color: blue; width: 100%; height: 100%;")
-                      )
-                    ),
-                    includeMarkdown("homeText.md")
+                    # fillPage(
+                    #   fillRow(
+                    #     div(style = "background-color: red; width: 100%; height: 100%;"),
+                    #     div(style = "background-color: blue; width: 100%; height: 100%;")
+                    #   )
+                    # ),
+                    p("HI")
+                    ##includeMarkdown("homeText.md")
 
                    
 
