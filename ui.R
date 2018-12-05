@@ -56,13 +56,14 @@ navbarPage("NYC Taxi and RideSharing",
                                             choices = list("Days" = "daily", "Months" = "monthly"), 
                                             selected = "daily"))
 
-                          ),
+                          )
                       
-                      fluidRow(h4("Every Pickup Between January and July, 2018"),
-                      p("These are the sums of pickups in each year from 2015 to 2018.
-                      The plot indicates a steady decline of taxi pickups, and
-                      a steady rise in FHV pickups."))
-                    )
+                      
+                    ),
+                    fluidRow(h4("Every Pickup Between January and July, 2018"),
+                             p("These are the sums of pickups in each year from 2015 to 2018.
+                               The plot indicates a steady decline of taxi pickups, and
+                               a steady rise in FHV pickups."))
            ),
 
            ## This is the second tab, that presents a bar graph containing pickup counts for
@@ -73,10 +74,10 @@ navbarPage("NYC Taxi and RideSharing",
                     h3("Pickups in January for NYC: Yellow Taxis vs. For Hire Vehicles"),
 
                     plotOutput("yearly_trends"),
-                    
+                    fluidRow(
                     #This will be to pick in whether you want to see 
                     #yellow taxi's, for-hire vehicles, or both                    
-                    column(3, offset = 0, 
+                    column(3, offset = 0,
                            div(style = "font-size: 10px; padding: 0px 0px; margin:0%",
                                radioButtons("radioTab3", label = h5("Transportation Services"),
                                             choices = list("Taxi Trends" = "Yellow", "For Hire Vehicle Trends" = "FHV", 
@@ -90,14 +91,16 @@ navbarPage("NYC Taxi and RideSharing",
                                dateRangeInput("datesTab3", label = h5("Date Range"),
                                               start = as.Date("2015-01-01"), end =as.Date("2018-01-01"))
                            )
-                    ),
+                    )),
+                    
+                    fluidRow(
                     
                     h4("Every Pickup in 2015, 2016, 2017, and 2018"),
                     
                     p("These are the sums of pickups in each year from 2015 to 2018.
                       The plot indicates a steady decline of taxi pickups, and
                       a steady rise in FHV pickups.")
-                    
+                    )
                     
            ),
            
