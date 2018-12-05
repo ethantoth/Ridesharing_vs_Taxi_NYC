@@ -16,6 +16,7 @@ library(reshape2)
 library(scales)
 library(stringr)
 
+
 ## Reads in the data, and allows the data to be used by ggplot
 transport_data <- read.csv("data/final_reformat.csv", stringsAsFactors = FALSE, header = TRUE)
 

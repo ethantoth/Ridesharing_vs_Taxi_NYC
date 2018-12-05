@@ -12,6 +12,7 @@
 
 library(shiny)
 library(DT)
+library(markdown)
 
 # Define UI for application that draws a histogram
 shinyUI(fluidPage(theme = "theme.css",
@@ -40,8 +41,8 @@ navbarPage("NYC Taxi and RideSharing",
                     #     div(style = "background-color: blue; width: 100%; height: 100%;")
                     #   )
                     # ),
-                    #includeMarkdown("homeText.md")
-                    p("HI")
+                    includeMarkdown("homeText.md")
+                    #p("HI")
 
                    
 
