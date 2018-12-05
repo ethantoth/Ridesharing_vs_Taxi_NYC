@@ -40,8 +40,7 @@ navbarPage("NYC Taxi and RideSharing",
                     #     div(style = "background-color: blue; width: 100%; height: 100%;")
                     #   )
                     # ),
-                    p("HI")
-                    ##includeMarkdown("homeText.md")
+                    includeMarkdown("homeText.md")
 
                    
 
@@ -135,11 +134,19 @@ navbarPage("NYC Taxi and RideSharing",
                     sidebarLayout(
                       sidebarPanel(
                         h3("Quick Analysis"),
+                        p("The table to right displays the total amount of for-hire vehicles and NYC taxis that were
+                          used from January, 2018 to June, 2018."),
+                        tags$ul(
+                          tags$li("First list item"), 
+                          tags$li("Second list item"), 
+                          tags$li("Third list item")
+                        ),
                         p("This table gives a summary of the total amount of for-hire vehicles and yellow taxis used by riders within
                           2018 from the months of January to June.")
                         ),
                       mainPanel(
-                        DT::dataTableOutput("monthlyTable"))
+                        DT::dataTableOutput("monthlyTable")
+                      )
                     )
             )
         )
