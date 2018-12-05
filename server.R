@@ -213,20 +213,53 @@ shinyServer(function(input, output) {
   ## This creates a plot comparing a single week of FHV and Yellow Taxi pickups
   
   output$example_week <- renderPlot({
-    one_week <- transport_data %>%
-      filter(Date >= as.Date("2018-03-04")) %>%
-      filter(Date <= as.Date("2018-03-10"))
+    # one_week <- transport_data %>%
+    #   filter(Date >= as.Date("2018-03-04")) %>%
+    #   filter(Date <= as.Date("2018-03-10"))
+    # one_week <- mutate(transport_data, day = format(Date, "%A"))
+    # 
+    # one_week <- one_week %>% group_by(day) %>% 
+    #   summarise(total = sum(FHV) + sum(Yellow)) %>% 
+    #   select(day, total)
+    # 
+    # x_labels <- c("Sunday", "Monday", 
+    #               "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday")
+    # 
+    # one_week$day <- factor(one_week$day, levels= x_labels)
+    # 
+    # one_week <- one_week[order(one_week$day), ]
+    # 
+    # View(one_week)
+    # 
+    # single_week <- ggplot(one_week, aes(x = day, y = total)) +
+    #   geom_line(aes(y = total, color = "total")) +
+    #   scale_colour_manual(values=c("blue")) +
+    #   theme_bw() +
+    #   labs(y = "Number of Pickups", x = "Day", color = "Total") +
+    #   scale_x_discrete(labels = x_labels)
+    #   #scale_x_date(date_breaks = "1 day", labels = scales::date_format("%A"))
+    # single_week
     
-    single_week <- ggplot(one_week, aes(x = Date, y = FHV)) +
+    one_week <- mutate(transport_data, day = format(Date, "%A"))
+    
+    one_week <- one_week %>% group_by(day) %>% 
+      summarise(FHV = sum(FHV), Yellow = sum(Yellow)) %>% 
+      select(day, FHV, Yellow)
+    
+    x_labels <- c("Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday")
+    
+    one_week$day <- factor(one_week$day, levels = x_labels)
+    
+    one_week <- one_week[order(one_week$day), ]
+    
+    single_week <- ggplot(one_week, aes(x = day, y = FHV, group = 1)) +
       geom_line(aes(y = FHV, color = "FHV")) +
       geom_line(aes(y = Yellow, color = "Yellow Taxi")) +
       scale_colour_manual(values=c("purple", "gold3")) +
       theme_bw() +
       labs(y = "Number of Pickups", x = "Day", color = "Service Type") +
-      scale_x_date(date_breaks = "1 day", labels = scales::date_format("%A")) +
-      scale_y_continuous(limits = c(100000, 900000),
-                         breaks = seq(from = 100000, to = 900000, by = 100000),
-                         labels = scales::comma)
+      scale_x_discrete(labels = x_labels)
+    
     single_week
   })
   
