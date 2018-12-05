@@ -37,12 +37,14 @@ correlations, we must keep in mind that our data could have several limitations
 **Current Issues**
 
 To help taxi's business in New York...
+
 -City officials first attempted to pass a cap on the number of FHVs in **2015**,
 as you can see from our data, the effort was unsuccessful at the time.
 -Currently, a bill that will put a moratorium on the issuance of new licenses
 for FHVs for one year, which is another reason why the data stops in June 2018
 
 However...
+
 Critics of the change, including FHV companies, argue that limiting the
 number of FHVs will make it harder for New Yorkers, particularly those of color
 and those living outside cab-saturated neighborhoods, to get around.
