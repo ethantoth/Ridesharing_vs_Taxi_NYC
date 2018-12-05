@@ -14,6 +14,7 @@ library(lubridate)
 library(DT)
 library(reshape2)
 library(scales)
+library(stringr)
 
 ## Reads in the data, and allows the data to be used by ggplot
 transport_data <- read.csv("data/final_reformat.csv", stringsAsFactors = FALSE, header = TRUE)
@@ -29,7 +30,6 @@ monthly_data <- transport_data %>% group_by(Date = floor_date(Date, "month")) %>
 
 
 yearly_data <- read.csv("data/yearlyTripData.csv", stringsAsFactors = FALSE, header = TRUE)
-melted_yearly_data <- melt(yearly_data)
 
 ## This function is called by day_line_graph and generates a ggplot graph
 
@@ -170,14 +170,43 @@ shinyServer(function(input, output) {
   ## This is the server code for the third tab of our application "2018 Monthly Trends"
   
   output$yearly_trends <- renderPlot({
-    ggplot(melted_yearly_data, aes(x = Date,value,fill=variable)) +
+    
+    ## Allows us to change the data the user sees based on what dates their interested in
+    first_date <- input$datesTab3[1]
+    final_date <- input$datesTab3[2]
+    
+    ## Basic code so that we only display data the user is interested in
+    filtered_yearly_data <- yearly_data %>%
+      filter(Date >= first_date) %>%
+      filter(Date <= final_date)
+    
+    colorValues <- c("purple", "gold3")
+    
+    if(input$radioTab3 != "both") {
+      filtered_yearly_data <- select(filtered_yearly_data, Date, input$radioTab3)
+    }
+    
+    if(input$radioTab3 == "Yellow") {
+      colorValues = "gold3"
+    }
+    
+    if(input$radioTab3 == "FHV") {
+      colorValues = "purple"
+    }
+    
+    x_labels <- format(seq(first_date, final_date, by = "years"), format = "%Y")
+    
+    melted_yearly_data <- melt(filtered_yearly_data)
+    
+    ggplot(melted_yearly_data, aes(x = Date, value, fill=variable)) +
       geom_bar(stat="identity",position="dodge") +
-      scale_fill_manual(values = c("purple", "gold3")) +
+      scale_fill_manual(values = colorValues) +
       theme_bw() +
       scale_y_continuous(labels = scales::comma, expand = c(0,0),
                          limits = c(0, 20500000)) +
-      scale_x_discrete(labels = c("2015", "2016", "2017", "2018")) +
-      labs(title = "NYC Taxis vs For Hire Vehices in January from 2015 to 2018",
+      #scale_x_date(date_breaks = "1 year", labels = scales::date_format("%y")) +
+      scale_x_discrete(labels = x_labels) +
+      labs(
            y = "Number of Pickups", x = "Year", fill = "Service Type")
   })
   

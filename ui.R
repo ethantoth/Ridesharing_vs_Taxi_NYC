@@ -95,14 +95,14 @@ navbarPage("NYC Taxi and RideSharing",
            tabPanel("Yearly Trends",
                     
 
-                    
                     plotOutput("yearly_trends"),
+                    
                     #This will be to pick in whether you want to see 
                     #yellow taxi's, for-hire vehicles, or both                    
                     column(3, offset = 0, 
                            div(style = "font-size: 10px; padding: 0px 0px; margin:0%",
-                               radioButtons("radio", label = h5("Transportation Services"),
-                                            choices = list("Taxi Trends" = "taxi", "For Hire Vehicle Trends" = "FHV", 
+                               radioButtons("radioTab3", label = h5("Transportation Services"),
+                                            choices = list("Taxi Trends" = "Yellow", "For Hire Vehicle Trends" = "FHV", 
                                                            "Both" = "both"), selected = "both")
                            )
                     ),
@@ -110,8 +110,8 @@ navbarPage("NYC Taxi and RideSharing",
                     #This will be for monthly range
                     column(4, offset = 1, 
                            div(style = "font-size: 10px; padding: 0px 0px; margin:0%", 
-                               dateRangeInput("dates", label = h5("Date Range"),
-                                              start = as.Date("2018-01-01"), end =as.Date("2018-07-01"))
+                               dateRangeInput("datesTab3", label = h5("Date Range"),
+                                              start = as.Date("2015-01-01"), end =as.Date("2018-01-01"))
                            )
                     )
                     
