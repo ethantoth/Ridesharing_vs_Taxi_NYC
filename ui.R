@@ -81,20 +81,13 @@ navbarPage("NYC Taxi and RideSharing",
                                               choices = list("Show Trend Line" = "show", 
                                                              "Don't Show Line" = "dont_show"), selected = "show"))
                              ),
-                    column(6,
-
-                           div(style = "font-size: 10px; padding: 0px 0px; margin:15%",
-                               radioButtons("trend", label = h3("View data in:"),
-                                            choices = list("Days" = "", "Months" = ""), selected = ""),
-                    
-
+                    column(5,
                            div(style = "font-size: 10px; padding: 0px 0px; margin:0%",
                                radioButtons("dailyTab2", label = h5("View data in:"),
-                                            choices = list("Days" = "daily", "Months" = "monthly"), selected = "daily")),
+                                            choices = list("Days" = "daily", "Months" = "monthly"), 
+                                            selected = "daily"))
 
-                            p("")
-
-                          ))
+                          )
                     )
            ),
 
@@ -177,6 +170,9 @@ navbarPage("NYC Taxi and RideSharing",
              #   )
              # )
              )
+           ),
+           tabPanel("Conclusion",
+                    includeMarkdown("conclusion.md")      
            )
         )
     )
