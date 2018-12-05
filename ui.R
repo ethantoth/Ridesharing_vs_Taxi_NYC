@@ -50,7 +50,9 @@ navbarPage("NYC Taxi and RideSharing",
            #The first tab
            tabPanel("2018 Daily Trends", 
                     fluidRow(
-
+                    
+                      h3("Pickups for NYC Yellow Taxis vs For Hire Vehices"),
+                      
                       #This will be to pick in whether you want to see 
                       #yellow taxi's, for-hire vehicles, or both
                       plotOutput("day_line_graph")
@@ -93,7 +95,7 @@ navbarPage("NYC Taxi and RideSharing",
            
            #The second tab
            tabPanel("Yearly Trends",
-                    
+                    h3("Pickups in January for NYC: Yellow Taxis vs. For Hire Vehicles"),
 
                     plotOutput("yearly_trends"),
                     
@@ -118,14 +120,16 @@ navbarPage("NYC Taxi and RideSharing",
            ),
            
            #The third tab
-           tabPanel("Example Week", 
+           tabPanel("Weekly Trends", 
                       mainPanel(
+                        
+                        h3("NYC Taxis vs For Hire Vehices - March 4th - 10th, 2018"),
       
-                        plotOutput("example_week"),
+                        plotOutput("example_week") # ,
                         
-                        h4("The Average Week"),
+                        # h4("The Average Week"),
                         
-                        p("This is an example week.")
+                        # p("This is an example week.")
                       )
                     ),    
            
@@ -154,14 +158,14 @@ navbarPage("NYC Taxi and RideSharing",
              p("When first imagining how to visualize the data we wished to portray from the NYC TLC it was 
                quickly understood that whatever we were about to do would have to require an immense amount of 
                data splicing and reconfiguration. Using the popular R packages of dplyr and ggplot in conjunction
-               with each other the csv file slowly started to form itself into a usable and comapct data frame."),
-             h3("Reconfiguration"),
+               with each other the csv file slowly started to form itself into a usable and comapct data frame.") # ,
+             # h3("Reconfiguration"),
              
              ## Here is where you can talk about how exactly you compacted the data Pierce.
-             p(""),
-             
-             p("Use the button below to view the source code of our data reconstruction."),
-             actionButton("codeButton", "Source Code")
+             # p(""),
+             # 
+             # p("Use the button below to view the source code of our data reconstruction."),
+             # actionButton("codeButton", "Source Code")
              # hidden(
              #   div(id='text_div',
              #       verbatimTextOutput("hiddenText")

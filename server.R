@@ -110,7 +110,7 @@ shinyServer(function(input, output) {
         geom_line(aes(y = Yellow, color = "Yellow Taxi")) +
         scale_colour_manual(values= "gold3") +
         theme_bw() +
-        labs(title = "NYC Taxis Pickup Data", y = "Number of Pickups", 
+        labs(y = "Number of Pickups", 
              color = "Service Type") +
         scale_x_date(date_breaks = "1 month") #+
         # scale_y_continuous(limits = c(150000, 400000),
@@ -123,7 +123,7 @@ shinyServer(function(input, output) {
         geom_line(aes(y = FHV, color = "FHV")) +
         scale_colour_manual(values = "purple") +
         theme_bw() +
-        labs(title = "NYC Taxis Pickup Data", y = "Number of Pickups", 
+        labs(y = "Number of Pickups", 
              color = "Service Type") +
         scale_x_date(date_breaks = "1 month") #+
         # scale_y_continuous(limits = c(450000, 900000),
@@ -136,7 +136,7 @@ shinyServer(function(input, output) {
         geom_line(aes(y = Yellow, color = "Yellow Taxi")) +
         scale_colour_manual(values=c("purple", "gold3")) +
         theme_bw() +
-        labs(title = "NYC Taxis vs For Hire Vehices", y = "Number of Pickups", 
+        labs(y = "Number of Pickups", 
              color = "Service Type") +
         scale_x_date(date_breaks = "1 month") #+
         # scale_y_continuous(limits = c(100000, 900000),
@@ -222,8 +222,7 @@ shinyServer(function(input, output) {
       geom_line(aes(y = Yellow, color = "Yellow Taxi")) +
       scale_colour_manual(values=c("purple", "gold3")) +
       theme_bw() +
-      labs(title = "NYC Taxis vs For Hire Vehices - March 4th - 10th, 2018", 
-           y = "Number of Pickups", x = "Day", color = "Service Type") +
+      labs(y = "Number of Pickups", x = "Day", color = "Service Type") +
       scale_x_date(date_breaks = "1 day", labels = scales::date_format("%A")) +
       scale_y_continuous(limits = c(100000, 900000),
                          breaks = seq(from = 100000, to = 900000, by = 100000),
