@@ -1,4 +1,3 @@
-#To Conclude
 
 **Implications**
 
