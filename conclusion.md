@@ -54,7 +54,7 @@ In the face of this growth of FHV, will yellow taxi's be driven out?
 Should we fight to protect the yellow taxi's or should we embrace this
 free-market revolution in transportation?
 
-##Our Team
+**Our Team**
 
 Ethan Toth
 _University of Washington, Junior, Informatics_
