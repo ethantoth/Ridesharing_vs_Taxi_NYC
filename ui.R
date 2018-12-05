@@ -87,8 +87,7 @@ navbarPage("NYC Taxi and RideSharing",
                                             choices = list("Days" = "daily", "Months" = "monthly"), selected = "daily")
                            )
                     ),
-                    p("This is where the text will appear. How much can I fit before the layout gets more messed up? I don't
-                      know I'm going to keep going until it stops.")
+                    p("")
            ),
 
 
@@ -136,7 +135,7 @@ navbarPage("NYC Taxi and RideSharing",
            
            #The fourth tab
            #The fourth tab
-           tabPanel("Table",
+           tabPanel("Data Table",
                     sidebarLayout(
                       sidebarPanel(
                         h3("Quick Analysis"),
