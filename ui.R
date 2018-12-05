@@ -26,7 +26,7 @@ navbarPage("NYC Taxi and RideSharing",
                       plotOutput("day_line_graph")
                     ),
                     fluidRow(
-                       column(1, 
+                       column(2, offset = 2, 
                               
                             ##add padding to seperate the widgets more
                              div(style = "font-size: 10px",
@@ -36,7 +36,7 @@ navbarPage("NYC Taxi and RideSharing",
                       )),
                       
                       #This will be for picking the daily date range 
-                      column(2, 
+                      column(3, 
                              div(style = "font-size: 10px", 
                                  dateRangeInput("datesTab2", label = h5("Date Range"),
                                                 start = as.Date("2018-01-01"), end = as.Date("2018-07-01"))
@@ -44,7 +44,7 @@ navbarPage("NYC Taxi and RideSharing",
                                  )),
                       
                       #This is for a widget that either displays the trend line(s) or not
-                      column(1,
+                      column(2,
                              div(style = "font-size: 10px",
                                  radioButtons("trendTab2", label = h5("Trend Line"),
                                               choices = list("Show Trend Line" = "show", 
@@ -77,7 +77,7 @@ navbarPage("NYC Taxi and RideSharing",
                     fluidRow(
                     #This will be to pick in whether you want to see 
                     #yellow taxi's, for-hire vehicles, or both                    
-                    column(3, offset = 0,
+                    column(3, offset = 3,
                            div(style = "font-size: 10px; padding: 0px 0px; margin:0%",
                                radioButtons("radioTab3", label = h5("Transportation Services"),
                                             choices = list("Taxi Trends" = "Yellow", "For Hire Vehicle Trends" = "FHV", 
@@ -114,13 +114,14 @@ navbarPage("NYC Taxi and RideSharing",
                         h3("NYC Taxis vs For Hire Vehices - Sums of Weekdays in 2018"),
       
                         plotOutput("example_week") ,
-                        
-                         h4("The Average Week"),
+                        fluidRow(
+                        h4("The Average Week"),
                         
                         p("These are the average number of pickups in each day of the week. 
                           For Hire Vehicles appear to peak in popularity during the weekends,
                           Yellow Taxis, on the other hand, seem to be the opposite,
                           being more popular on weekdays than on weekends.")
+                        )
                       )
                     ),    
            
