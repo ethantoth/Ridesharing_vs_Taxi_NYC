@@ -13,6 +13,7 @@ library(dplyr)
 library(lubridate)
 library(DT)
 library(reshape2)
+library(scales)
 
 ## Reads in the data, and allows the data to be used by ggplot
 transport_data <- read.csv("data/final_reformat.csv", stringsAsFactors = FALSE, header = TRUE)
@@ -100,6 +101,8 @@ shinyServer(function(input, output) {
     
     ## This is where we generate the plot based on what type of data the user
     ## is interested in based on the radio widget
+    
+    options(scipen=10000000)
     
     if (input$radioTab2 == "taxi") {
       

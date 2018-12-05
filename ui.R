@@ -40,7 +40,8 @@ navbarPage("NYC Taxi and RideSharing",
                     #     div(style = "background-color: blue; width: 100%; height: 100%;")
                     #   )
                     # ),
-                    includeMarkdown("homeText.md")
+                    #includeMarkdown("homeText.md")
+                    p("HI")
 
                    
 
@@ -92,11 +93,10 @@ navbarPage("NYC Taxi and RideSharing",
            
            #The second tab
            tabPanel("Yearly Trends",
+                    
 
                     
                     plotOutput("yearly_trends"),
-
-                    
                     #This will be to pick in whether you want to see 
                     #yellow taxi's, for-hire vehicles, or both                    
                     column(3, offset = 0, 
@@ -114,6 +114,7 @@ navbarPage("NYC Taxi and RideSharing",
                                               start = as.Date("2018-01-01"), end =as.Date("2018-07-01"))
                            )
                     )
+                    
            ),
            
            #The third tab
