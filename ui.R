@@ -79,19 +79,24 @@ navbarPage("NYC Taxi and RideSharing",
                                  radioButtons("trendTab2", label = h5("Trend Line"),
                                               choices = list("Show Trend Line" = "show", 
                                                              "Don't Show Line" = "dont_show"), selected = "show"))
-                             )
-                      ),
+                             ),
                     column(6,
+
+                           div(style = "font-size: 10px; padding: 0px 0px; margin:15%",
+                               radioButtons("trend", label = h3("View data in:"),
+                                            choices = list("Days" = "", "Months" = ""), selected = ""),
+                    
+
                            div(style = "font-size: 10px; padding: 0px 0px; margin:0%",
                                radioButtons("dailyTab2", label = h5("View data in:"),
-                                            choices = list("Days" = "daily", "Months" = "monthly"), selected = "daily")
-                           )
-                    ),
-                    p("")
+                                            choices = list("Days" = "daily", "Months" = "monthly"), selected = "daily")),
+
+                            p("")
+
+                          ))
+                    )
            ),
 
-
-           
            #The second tab
            tabPanel("Yearly Trends",
                     h3("Pickups in January for NYC: Yellow Taxis vs. For Hire Vehicles"),
@@ -124,11 +129,11 @@ navbarPage("NYC Taxi and RideSharing",
                         
                         h3("NYC Taxis vs For Hire Vehices - March 4th - 10th, 2018"),
       
-                        plotOutput("example_week") # ,
+                        plotOutput("example_week") ,
                         
-                        # h4("The Average Week"),
+                         h4("The Average Week"),
                         
-                        # p("This is an example week.")
+                        p("This is an example week.")
                       )
                     ),    
            
@@ -175,6 +180,8 @@ navbarPage("NYC Taxi and RideSharing",
         )
     )
  )
+
+
 
 
 
