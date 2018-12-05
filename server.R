@@ -1,11 +1,3 @@
-#
-# This is the server logic of a Shiny web application. You can run the 
-# application by clicking 'Run App' above.
-#
-# Find out more about building applications with Shiny here:
-# 
-#    http://shiny.rstudio.com/
-#
 
 library(shiny)
 library(ggplot2)
@@ -33,7 +25,6 @@ monthly_data <- transport_data %>% group_by(Date = floor_date(Date, "month")) %>
 yearly_data <- read.csv("data/yearlyTripData.csv", stringsAsFactors = FALSE, header = TRUE)
 
 ## This function is called by day_line_graph and generates a ggplot graph
-
 generate_day_line_plot <- function(monthlyOrDaily){
   
   if (input$radioTab2 == "taxi") {
@@ -74,7 +65,6 @@ shinyServer(function(input, output) {
   
   
   ## This is the server code for the second tab of our application "2018 Daily Trends"
-  
   ## This graph will show how different types of paid transport change in popularity 
   ## over time, with each point being the next day
   output$day_line_graph <- renderPlot({
