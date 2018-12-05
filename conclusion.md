@@ -1,4 +1,6 @@
 
+# To Conclude
+
 **Implications**
 
 Some possible implications from the trends in our data include:
