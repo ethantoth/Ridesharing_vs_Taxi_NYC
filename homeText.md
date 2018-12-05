@@ -20,7 +20,10 @@ The visualizations on this application meant to show how different types of paid
 increased or decreased in popularity.  
 
 Our data is filtered down to 2018 (the months of January to June)
-and the first month of every year from 2015. The intent of these visualizations to speak to the current
+and the first month of every year from 2015. 
+Each plot has been made using the "ggplot2" package in R. The line graphs make use of the geom_line function, while the bar graphs are made from the geom_bar function. Interestingly enough, the two functions had conflicts with different classes of data. To use geom_line, the dates used in the data needed to be converted to the "Date" class, while geom_bar needed it to be in the "Character" class.
+
+The intent of these visualizations to speak to the current
 debate surrounding lose of business for taxi drivers in urban areas, such as New York. The trends indicate that taxi use is slowly
 on the decline, while in contrast, for-hire vehicle use is sturdily inclining.  
 
