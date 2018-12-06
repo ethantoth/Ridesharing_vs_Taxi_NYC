@@ -2,13 +2,14 @@
 
 **The Final Product**
 
-The link to our shiny.app: [https://piercecave.shinyapps.io/Ridesharing_vs_Taxi_NYC/](https://piercecave.shinyapps.io/Ridesharing_vs_Taxi_NYC/)
+[The link to our shiny.app](https://piercecave.shinyapps.io/Ridesharing_vs_Taxi_NYC/)
 
 Our Team: Pierce Cave, Sofia Thomas, Zaijen Santos, Ethan Toth
 
 Group: BA 1
 
-In our project we will be working with two data sets LINKS.
+In our project we will be working with two data sets from the [NYC Taxi and Limousine Commission](http://www.nyc.gov/html/tlc/html/about/trip_record_data.shtml)
+
 - The first data set holds information about the New York City **yellow taxi trips** from the years 2015 - 2018.
 - The second data set is about NYC **for-hire-vehicles** trips from the years 2015 - 2018.
 - Both sets are in a CSV format and were uploaded by the NYC Taxi and Limousine Commission.
