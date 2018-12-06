@@ -87,7 +87,9 @@ shinyUI(fluidPage(
         h4("Every Pickup Between January and July, 2018"),
         p("These are the sums of pickups in each year from 2015 to 2018.
           The plot indicates a steady decline of taxi pickups, and
-          a steady rise in FHV pickups.")
+          a steady rise in FHV pickups. The monthy average total  
+          from the data from 2018 was 20,752,778.8 pickups by FHVs and 
+          3,966,633.32 pickups by yellow taxi cabs.")
       )
     ),
 
@@ -136,7 +138,14 @@ shinyUI(fluidPage(
 
         p("These are the sums of pickups in each year from 2015 to 2018.
           The plot indicates a steady decline of taxi pickups, and
-          a steady rise in FHV pickups.")
+          a steady rise in FHV pickups. Also consider, as of 2017
+          there were 13,587 yellow taxi cabs and 60,000 FHV (of 
+          which more than 46,000 are connected to Uber). This presents
+          a limitation in our data; Pickup sums may be much higher for
+          FHV merely because there are more than four times the amount
+          of taxis. However, when looking at this bar graph,one cannot 
+          ignore how rapidly FHV pickup growth has occurred just in the 
+          past four years.")
       )
     ),
 
@@ -189,10 +198,14 @@ shinyUI(fluidPage(
         p("When first imagining how to visualize the data we wished
           to portray from the NYC TLC it was quickly understood that
           whatever we were about to do would have to require an immense 
-          amount of  data splicing and reconfiguration. Using the 
+          amount of  data slicing and reconfiguration. Using the 
           popular R packages of dplyr and ggplot in conjunction with 
-          each other the csv file slowly 
-          started to form itself into a usable and comapct data frame.")
+          each other the csv file slowly started to form itself into a 
+          usable and compat data frame. Just from the six months of data 
+          from 2018, there were twelve files of which contained about 
+          twenty-four gigs of data. From these files, we combined them and 
+          created a data frame in which we filtered all 124,516,673 FHV entries
+          and 53,799,800 yellow taxi cabs entries.")
       )
     ),
 
