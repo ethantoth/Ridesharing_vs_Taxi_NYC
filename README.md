@@ -5,6 +5,7 @@
 The link to our shiny.app: [https://piercecave.shinyapps.io/Ridesharing_vs_Taxi_NYC/](https://piercecave.shinyapps.io/Ridesharing_vs_Taxi_NYC/)
 
 Our Team: Pierce Cave, Sofia Thomas, Zaijen Santos, Ethan Toth
+
 Group: BA 1
 
 In our project we will be working with two data sets LINKS.
